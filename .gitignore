@@ -1,0 +1,13 @@
+/dist/
+proyectoagiles.json
+/build/
+build.xml
+/nbproject/
+nb-configuration.xml
+/build.properties
+*~
+*.bak
+.swp
+/nbproject/*~
+/lib/
+*.jar
