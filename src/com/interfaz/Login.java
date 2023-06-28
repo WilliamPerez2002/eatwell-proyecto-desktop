@@ -319,12 +319,12 @@ public class Login extends javax.swing.JFrame {
 
     private void txtVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseExited
         // TODO add your handling code here:
-        this.btn.cambiarColorBotonLogin(btnVolver, 1);
+        this.btn.cambiarColorBotones(btnVolver, 1);
     }//GEN-LAST:event_txtVolverMouseExited
 
     private void txtVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseEntered
         // TODO add your handling code here:
-        this.btn.cambiarColorBotonLogin(btnVolver, 0);
+        this.btn.cambiarColorBotones(btnVolver, 0);
     }//GEN-LAST:event_txtVolverMouseEntered
 
     private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
@@ -360,12 +360,12 @@ public class Login extends javax.swing.JFrame {
 
     private void txtInicioSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseExited
         // TODO add your handling code here:
-        this.btn.cambiarColorBotonLogin(botonInicioSesion, 1);
+        this.btn.cambiarColorBotones(botonInicioSesion, 1);
     }//GEN-LAST:event_txtInicioSesionMouseExited
 
     private void txtInicioSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseEntered
         // TODO add your handling code here:
-        this.btn.cambiarColorBotonLogin(botonInicioSesion, 0);
+        this.btn.cambiarColorBotones(botonInicioSesion, 0);
     }//GEN-LAST:event_txtInicioSesionMouseEntered
 
     private void txtInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInicioSesionMouseClicked
@@ -400,12 +400,12 @@ public class Login extends javax.swing.JFrame {
 
     private void textoBtnSiguienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseExited
         // TODO add your handling code here:
-        this.btn.cambiarColorBotonLogin(botonSiguiente, 1);
+        this.btn.cambiarColorBotones(botonSiguiente, 1);
     }//GEN-LAST:event_textoBtnSiguienteMouseExited
 
     private void textoBtnSiguienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseEntered
         // TODO add your handling code here:
-        this.btn.cambiarColorBotonLogin(botonSiguiente, 0);
+        this.btn.cambiarColorBotones(botonSiguiente, 0);
     }//GEN-LAST:event_textoBtnSiguienteMouseEntered
 
     private void textoBtnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoBtnSiguienteMouseClicked
@@ -431,6 +431,7 @@ private void cambiarDeInterfaz() {
     if (con) {
         this.setVisible(false);
         this.fin.setVisible(true);
+        this.fin.nombreUsuario(jtxtUsuarioUIContraseña.getText());
     }
 }
 

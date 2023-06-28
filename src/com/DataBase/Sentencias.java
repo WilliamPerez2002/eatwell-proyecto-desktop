@@ -2,6 +2,8 @@ package com.DataBase;
 
 import javax.swing.JTextField;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -47,12 +49,17 @@ public class Sentencias {
         }
     }
     
-    private ResultSet query(String usuario) throws SQLException {
-        Connection cn = this.con.getConexion();
-        String sql = "SELECT * FROM " + this.BD[0] + " WHERE " + this.BD[1] + " = ?";
-        PreparedStatement ps = cn.prepareStatement(sql);
-        ps.setString(1, usuario);
-        return ps.executeQuery();
+    private ResultSet query(String usuario) {
+        try {
+            Connection cn = this.con.getConexion();
+            String sql = "SELECT * FROM " + this.BD[0] + " WHERE " + this.BD[1] + " = ?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, usuario);
+            return ps.executeQuery();
+        } catch (SQLException ex) {
+            System.out.println("Error"+ex);
+            return null;
+        }
     }
     
     private void setIntento(String usuario) {
@@ -85,7 +92,7 @@ public class Sentencias {
             if (rs.next()) {
                 int intentos = rs.getInt(this.BD[4]);
                 if (intentos == 3) {
-                    this.bloquearUsuario(usuario,errorUsuario);
+                    this.bloquearUsuario(usuario, errorUsuario);
                 }
             }
         } catch (SQLException ex) {
@@ -101,6 +108,45 @@ public class Sentencias {
             ps.setString(2, usuario);
             ps.executeUpdate();
             errorUsuario.setText("Usuario bloqueado");
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex);
+        }
+    }
+    
+    public boolean compararContraseña(String contrasena, String administrador, JLabel errorCambio) {
+        try {
+            ResultSet rs = query(administrador);
+            if (rs.next()) {                
+                String contrasenaBD = rs.getString(this.BD[2]);
+                if (contrasenaBD.equals(contrasena)) {
+                    return true;
+                }
+                errorCambio.setText("Contraseña incorrecta");
+                return false;
+            }
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    public boolean comprarNuevasContrasenas(String contrasena1, String contrasena2, JLabel errorCambio) {
+        if (contrasena1.equals(contrasena2)) {
+            return true;
+        } else {
+            errorCambio.setText("Las contraseñas no coinciden");
+            return false;
+        }
+    }
+    
+    public void actualizarContraseña(String contrasena, String administrador) {
+        try {
+            Connection cn = this.con.getConexion();
+            String sql = "UPDATE " + this.BD[0] + " SET " + this.BD[2] + " = ? WHERE " + this.BD[1] + " = ?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, contrasena);
+            ps.setString(2, administrador);
+            ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
         }

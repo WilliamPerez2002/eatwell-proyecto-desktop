@@ -4,17 +4,26 @@
  */
 package com.interfaz;
 
+import com.DataBase.Acciones;
+import com.backend.Botones;
+
 /**
  *
  * @author marlo
  */
 public class Menu extends javax.swing.JFrame {
 
+    private final Botones btn = new Botones();
+    private final Acciones ac = new Acciones();
     /**
      * Creates new form EnConstruccion
      */
     public Menu() {
         initComponents();
+    }
+
+    public void nombreUsuario(String nombre) {
+        jlblNombreUsuarioMenu.setText(nombre);
     }
 
     /**
@@ -34,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jpEditar = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jpEiminar = new javax.swing.JPanel();
+        jpEliminar = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jpReportes = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -45,10 +54,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jpCerrarSesion = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
         jpCambiarContrasena = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanelEditarContrasena = new javax.swing.JPanel();
         jpBotonGuardarContrasena = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -61,6 +68,8 @@ public class Menu extends javax.swing.JFrame {
         jpswContrasenaAnterior = new javax.swing.JPasswordField();
         jpswContrasenaNueva = new javax.swing.JPasswordField();
         jLabel37 = new javax.swing.JLabel();
+        jlblTextoErrorContrasenaDiferente = new javax.swing.JLabel();
+        jlblTextoErrorContrasenaIngresada = new javax.swing.JLabel();
         jPanelAgregar = new javax.swing.JPanel();
         jpAceptarAgregar = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -121,6 +130,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Perfil");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel6MouseExited(evt);
+            }
+        });
         jpPerfil.add(jLabel6, java.awt.BorderLayout.CENTER);
 
         jpMenu.add(jpPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 120));
@@ -134,6 +155,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Agregar Alimento");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
         jpAgregar.add(jLabel7, java.awt.BorderLayout.CENTER);
 
         jpMenu.add(jpAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 120));
@@ -146,20 +179,44 @@ public class Menu extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Editar Alimento");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel8MouseExited(evt);
+            }
+        });
         jpEditar.add(jLabel8, java.awt.BorderLayout.CENTER);
 
         jpMenu.add(jpEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 240, 120));
 
-        jpEiminar.setBackground(new java.awt.Color(75, 77, 102));
-        jpEiminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jpEiminar.setLayout(new java.awt.BorderLayout());
+        jpEliminar.setBackground(new java.awt.Color(75, 77, 102));
+        jpEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jpEliminar.setLayout(new java.awt.BorderLayout());
 
         jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Eliminar Alimento");
-        jpEiminar.add(jLabel9, java.awt.BorderLayout.CENTER);
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel9MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel9MouseExited(evt);
+            }
+        });
+        jpEliminar.add(jLabel9, java.awt.BorderLayout.CENTER);
 
-        jpMenu.add(jpEiminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 240, 120));
+        jpMenu.add(jpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 240, 120));
 
         jpReportes.setBackground(new java.awt.Color(75, 77, 102));
         jpReportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -169,6 +226,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Reportes");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel10MouseExited(evt);
+            }
+        });
         jpReportes.add(jLabel10, java.awt.BorderLayout.CENTER);
 
         jpMenu.add(jpReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 240, 120));
@@ -208,27 +277,36 @@ public class Menu extends javax.swing.JFrame {
         jLabel5.setText("WELL");
         jPanelPerfil.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 220, -1));
 
-        jpCerrarSesion.setBackground(new java.awt.Color(86, 117, 184));
-        jpCerrarSesion.setLayout(new java.awt.BorderLayout());
+        jpCambiarContrasena.setBackground(new java.awt.Color(86, 117, 184));
+        jpCambiarContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpCambiarContrasenaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpCambiarContrasenaMouseExited(evt);
+            }
+        });
+        jpCambiarContrasena.setLayout(new java.awt.BorderLayout());
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Cambiar Contraseña");
-        jpCerrarSesion.add(jLabel11, java.awt.BorderLayout.CENTER);
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel11MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel11MouseExited(evt);
+            }
+        });
+        jpCambiarContrasena.add(jLabel11, java.awt.BorderLayout.CENTER);
 
-        jPanelPerfil.add(jpCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 260, 50));
-
-        jpCambiarContrasena.setBackground(new java.awt.Color(86, 117, 184));
-        jpCambiarContrasena.setLayout(new java.awt.BorderLayout());
-
-        jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Cerrar Sesion");
-        jpCambiarContrasena.add(jLabel12, java.awt.BorderLayout.CENTER);
-
-        jPanelPerfil.add(jpCambiarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 260, 50));
+        jPanelPerfil.add(jpCambiarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 260, 50));
 
         jtpOpciones.addTab("tab1", jPanelPerfil);
 
@@ -236,12 +314,29 @@ public class Menu extends javax.swing.JFrame {
         jPanelEditarContrasena.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpBotonGuardarContrasena.setBackground(new java.awt.Color(86, 117, 184));
+        jpBotonGuardarContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpBotonGuardarContrasenaMouseEntered(evt);
+            }
+        });
         jpBotonGuardarContrasena.setLayout(new java.awt.BorderLayout());
 
         jLabel23.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Guardar");
+        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel23MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel23MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel23MouseExited(evt);
+            }
+        });
         jpBotonGuardarContrasena.add(jLabel23, java.awt.BorderLayout.CENTER);
 
         jPanelEditarContrasena.add(jpBotonGuardarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 260, 50));
@@ -271,6 +366,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Cancelar");
+        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel18MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel18MouseExited(evt);
+            }
+        });
         jpBotonCancelarContrasena.add(jLabel18, java.awt.BorderLayout.CENTER);
 
         jPanelEditarContrasena.add(jpBotonCancelarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 260, 50));
@@ -279,21 +386,23 @@ public class Menu extends javax.swing.JFrame {
         jpswConfirmarContrasena.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 40)); // NOI18N
         jpswConfirmarContrasena.setForeground(new java.awt.Color(255, 255, 255));
         jpswConfirmarContrasena.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jpswConfirmarContrasena.setText("jPasswordField1");
         jPanelEditarContrasena.add(jpswConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 320, -1));
 
         jpswContrasenaAnterior.setBackground(new java.awt.Color(77, 71, 83));
         jpswContrasenaAnterior.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 40)); // NOI18N
         jpswContrasenaAnterior.setForeground(new java.awt.Color(255, 255, 255));
         jpswContrasenaAnterior.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jpswContrasenaAnterior.setText("jPasswordField1");
+        jpswContrasenaAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpswContrasenaAnteriorActionPerformed(evt);
+            }
+        });
         jPanelEditarContrasena.add(jpswContrasenaAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 320, -1));
 
         jpswContrasenaNueva.setBackground(new java.awt.Color(77, 71, 83));
         jpswContrasenaNueva.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 40)); // NOI18N
         jpswContrasenaNueva.setForeground(new java.awt.Color(255, 255, 255));
         jpswContrasenaNueva.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jpswContrasenaNueva.setText("jPasswordField1");
         jPanelEditarContrasena.add(jpswContrasenaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 320, -1));
 
         jLabel37.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 40)); // NOI18N
@@ -301,6 +410,16 @@ public class Menu extends javax.swing.JFrame {
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel37.setText("Contraseña anterior:");
         jPanelEditarContrasena.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 380, -1));
+
+        jlblTextoErrorContrasenaDiferente.setBackground(new java.awt.Color(255, 0, 0));
+        jlblTextoErrorContrasenaDiferente.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblTextoErrorContrasenaDiferente.setForeground(new java.awt.Color(255, 0, 0));
+        jPanelEditarContrasena.add(jlblTextoErrorContrasenaDiferente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, 270, 20));
+
+        jlblTextoErrorContrasenaIngresada.setBackground(new java.awt.Color(255, 0, 0));
+        jlblTextoErrorContrasenaIngresada.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblTextoErrorContrasenaIngresada.setForeground(new java.awt.Color(255, 0, 0));
+        jPanelEditarContrasena.add(jlblTextoErrorContrasenaIngresada, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 270, 20));
 
         jtpOpciones.addTab("tab2", jPanelEditarContrasena);
 
@@ -314,6 +433,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Aceptar");
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel14MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel14MouseExited(evt);
+            }
+        });
         jpAceptarAgregar.add(jLabel14, java.awt.BorderLayout.CENTER);
 
         jPanelAgregar.add(jpAceptarAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 260, 50));
@@ -326,6 +454,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Cancelar");
         jLabel15.setToolTipText("");
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel15MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel15MouseExited(evt);
+            }
+        });
         jpCancelarAgregar.add(jLabel15, java.awt.BorderLayout.CENTER);
 
         jPanelAgregar.add(jpCancelarAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 260, 50));
@@ -447,6 +584,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Aceptar");
+        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel25MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel25MouseExited(evt);
+            }
+        });
         jpAceptarEditar.add(jLabel25, java.awt.BorderLayout.CENTER);
 
         jPanelEditar.add(jpAceptarEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 260, 50));
@@ -459,6 +605,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Cancelar");
         jLabel26.setToolTipText("");
+        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel26MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel26MouseExited(evt);
+            }
+        });
         jpCancelarEditar.add(jLabel26, java.awt.BorderLayout.CENTER);
 
         jPanelEditar.add(jpCancelarEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 260, 50));
@@ -576,6 +731,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Aceptar");
+        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel31MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel31MouseExited(evt);
+            }
+        });
         jpAceptarEliminar.add(jLabel31, java.awt.BorderLayout.CENTER);
 
         jPanelEliminar.add(jpAceptarEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 260, 50));
@@ -588,6 +752,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("Cancelar");
         jLabel32.setToolTipText("");
+        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel32MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel32MouseExited(evt);
+            }
+        });
         jpCancelarEliminar.add(jLabel32, java.awt.BorderLayout.CENTER);
 
         jPanelEliminar.add(jpCancelarEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 260, 50));
@@ -680,6 +853,205 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 0);
+    }//GEN-LAST:event_jLabel11MouseEntered
+
+    private void jpCambiarContrasenaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCambiarContrasenaMouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 0);
+    }//GEN-LAST:event_jpCambiarContrasenaMouseExited
+
+    private void jpCambiarContrasenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCambiarContrasenaMouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 1);
+    }//GEN-LAST:event_jpCambiarContrasenaMouseEntered
+
+    private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 1);
+    }//GEN-LAST:event_jLabel11MouseExited
+
+    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpPerfil, 1);
+    }//GEN-LAST:event_jLabel6MouseEntered
+
+    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpPerfil, 0);
+    }//GEN-LAST:event_jLabel6MouseExited
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpAgregar, 1);
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpAgregar, 0);
+    }//GEN-LAST:event_jLabel7MouseExited
+
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpEditar, 1);
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpEditar, 0);
+    }//GEN-LAST:event_jLabel8MouseExited
+
+    private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpEliminar, 1);
+    }//GEN-LAST:event_jLabel9MouseEntered
+
+    private void jLabel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpEliminar, 0);
+    }//GEN-LAST:event_jLabel9MouseExited
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpReportes, 1);
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotonesMenu(jpReportes, 0);
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jLabel23MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpBotonGuardarContrasena, 0);
+    }//GEN-LAST:event_jLabel23MouseEntered
+
+    private void jLabel23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpBotonGuardarContrasena, 1);
+    }//GEN-LAST:event_jLabel23MouseExited
+
+    private void jLabel18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpBotonCancelarContrasena, 0);
+    }//GEN-LAST:event_jLabel18MouseEntered
+
+    private void jLabel18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpBotonCancelarContrasena, 1);
+    }//GEN-LAST:event_jLabel18MouseExited
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarPestañaMenu(jtpOpciones, 0);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarPestañaMenu(jtpOpciones, 2);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarPestañaMenu(jtpOpciones, 3);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarPestañaMenu(jtpOpciones, 4);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarPestañaMenu(jtpOpciones, 5);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarPestañaMenu(jtpOpciones, 1);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        // TODO add your handling code here:
+        this.ac.limpiarCambioContraseña(jlblTextoErrorContrasenaIngresada, jlblTextoErrorContrasenaDiferente, jpswContrasenaAnterior, jpswContrasenaNueva, jpswConfirmarContrasena);
+        this.ac.cambiarPestañaMenu(jtpOpciones, 0);
+    }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jpBotonGuardarContrasenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBotonGuardarContrasenaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpBotonGuardarContrasenaMouseEntered
+
+    private void jpswContrasenaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpswContrasenaAnteriorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpswContrasenaAnteriorActionPerformed
+
+    private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarAgregar, 0);
+    }//GEN-LAST:event_jLabel14MouseEntered
+
+    private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarAgregar, 1);
+    }//GEN-LAST:event_jLabel14MouseExited
+
+    private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarAgregar, 0);
+    }//GEN-LAST:event_jLabel15MouseEntered
+
+    private void jLabel15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarAgregar, 1);
+    }//GEN-LAST:event_jLabel15MouseExited
+
+    private void jLabel25MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEditar, 0);
+    }//GEN-LAST:event_jLabel25MouseEntered
+
+    private void jLabel25MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEditar, 1);
+    }//GEN-LAST:event_jLabel25MouseExited
+
+    private void jLabel26MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEditar, 0);
+    }//GEN-LAST:event_jLabel26MouseEntered
+
+    private void jLabel26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEditar, 1);
+    }//GEN-LAST:event_jLabel26MouseExited
+
+    private void jLabel31MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEliminar, 0);
+    }//GEN-LAST:event_jLabel31MouseEntered
+
+    private void jLabel31MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEliminar,1);
+    }//GEN-LAST:event_jLabel31MouseExited
+
+    private void jLabel32MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEliminar, 0);
+    }//GEN-LAST:event_jLabel32MouseEntered
+
+    private void jLabel32MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEliminar, 1);
+    }//GEN-LAST:event_jLabel32MouseExited
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+        // TODO add your handling code here:
+        this.ac.cambiarContraseña(jlblNombreUsuarioMenu.getText(), jlblTextoErrorContrasenaIngresada, jlblTextoErrorContrasenaDiferente, jpswContrasenaAnterior, jpswContrasenaNueva, jpswConfirmarContrasena);
+    }//GEN-LAST:event_jLabel23MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -735,7 +1107,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -775,6 +1146,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelReportes;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel jlblNombreUsuarioMenu;
+    private javax.swing.JLabel jlblTextoErrorContrasenaDiferente;
+    private javax.swing.JLabel jlblTextoErrorContrasenaIngresada;
     private javax.swing.JPanel jpAceptarAgregar;
     private javax.swing.JPanel jpAceptarEditar;
     private javax.swing.JPanel jpAceptarEliminar;
@@ -785,9 +1158,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jpCancelarAgregar;
     private javax.swing.JPanel jpCancelarEditar;
     private javax.swing.JPanel jpCancelarEliminar;
-    private javax.swing.JPanel jpCerrarSesion;
     private javax.swing.JPanel jpEditar;
-    private javax.swing.JPanel jpEiminar;
+    private javax.swing.JPanel jpEliminar;
     private javax.swing.JPanel jpInterzfaz;
     private javax.swing.JPanel jpMenu;
     private javax.swing.JPanel jpPerfil;
