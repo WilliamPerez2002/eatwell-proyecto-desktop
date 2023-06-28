@@ -11,9 +11,9 @@ public class Botones {
     
     public void cambiarColorBotonLogin(JPanel boton, int caso){
         if (caso == 0) {
-            boton.setBackground(new Color(72,140,120));
+            boton.setBackground(new Color(136,158,205));
         }else{
-            boton.setBackground(new Color(72,127,120));
+            boton.setBackground(new Color(86,117,184));
         }
         
     };

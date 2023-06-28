@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Conexion {
 
-    private final String user = "sql10625378";
-    private final String pass = "tajGtRKkPM";
-    private final String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10625378";
+    private final String user = "sql9627390";
+    private final String pass = "zlz2f7cWFN";
+    private final String url = "jdbc:mysql://sql9.freesqldatabase.com:3306/sql9627390";
 
     public Connection getConexion() {
         Connection connect = null;
