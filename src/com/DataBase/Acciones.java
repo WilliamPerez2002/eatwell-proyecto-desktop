@@ -49,6 +49,7 @@ public class Acciones {
         boolean primerFiltro = ejecuciones.compararContraseña(contrasenaInicial, administrador, errorCambioOrigen);
         boolean segundoFiltro = ejecuciones.comprarNuevasContrasenas(contrasenaUno, contrasenaDos, errorCambioNuevo);
         if (primerFiltro == true && segundoFiltro == true) {
+            ejecuciones.actualizarContraseña(contrasenaUno, administrador);
             limpiarCambioContraseña(errorCambioOrigen, errorCambioNuevo, contrasena1, contrasena2, contrasena3);
         }
         contrasena1.setText("");

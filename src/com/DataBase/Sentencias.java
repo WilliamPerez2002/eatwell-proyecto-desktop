@@ -2,8 +2,6 @@ package com.DataBase;
 
 import javax.swing.JTextField;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -49,17 +47,12 @@ public class Sentencias {
         }
     }
     
-    private ResultSet query(String usuario) {
-        try {
+    private ResultSet query(String usuario) throws SQLException {
             Connection cn = this.con.getConexion();
             String sql = "SELECT * FROM " + this.BD[0] + " WHERE " + this.BD[1] + " = ?";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, usuario);
             return ps.executeQuery();
-        } catch (SQLException ex) {
-            System.out.println("Error"+ex);
-            return null;
-        }
     }
     
     private void setIntento(String usuario) {
