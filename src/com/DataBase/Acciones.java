@@ -1,6 +1,9 @@
 package com.DataBase;
 
 import com.backend.*;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
@@ -10,6 +13,7 @@ public class Acciones {
 
     private final Sentencias ejecuciones = new Sentencias();
     private final CamposTexto txt = new CamposTexto();
+    private final AdministrarFirebase fr = new AdministrarFirebase();
 
     public void siguiente(JTextField usuario, JTabbedPane pestañas, JTextField textoUsuarioContraseña, JLabel errorUsuario, JLabel errorContrUsuario, JLabel errorContrContr) {
         String estado = this.ejecuciones.comprobarUsuarioYBloqueo(usuario);
@@ -63,5 +67,20 @@ public class Acciones {
         contrasena1.setText("");
         contrasena2.setText("");
         contrasena3.setText("");
+    }
+    
+    public void comrpobarDatos(JTextField nombre, JFormattedTextField calorias,ArrayList<String> categorias){
+        if (!nombre.getText().isEmpty() && !calorias.getText().isEmpty() && !categorias.isEmpty()) {
+            fr.guardar(nombre.getText(), Integer.parseInt(calorias.getText()), categorias);
+            nombre.setText("");
+            calorias.setText("");
+        }
+    }
+    
+        public void comrpobarDatosEditados(JComboBox nombre, JFormattedTextField calorias,ArrayList<String> categorias){
+            if (!calorias.getText().isEmpty() && !categorias.isEmpty()) {
+            fr.editar(nombre.getSelectedItem().toString(), Integer.parseInt(calorias.getText()), categorias);
+            calorias.setText("");
+        }
     }
 }

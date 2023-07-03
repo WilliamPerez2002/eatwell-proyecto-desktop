@@ -14,8 +14,9 @@ import java.io.IOException;
  * @author marlo
  */
 public class Firebase {
+    public static Firestore db;
 
-    public Firestore getConexionFirebase() {
+    public void iniciarConexionFirebase() {
         try {
             FileInputStream serviceAccount
                     = new FileInputStream("src/com/DataBase/proyectoagiles.json");
@@ -24,13 +25,11 @@ public class Firebase {
                     .setDatabaseUrl("https://proyectoagiles-a0340-default-rtdb.firebaseio.com")
                     .build();
             FirebaseApp.initializeApp(options);
-            return FirestoreClient.getFirestore();
+            db = FirestoreClient.getFirestore();
         } catch (FileNotFoundException ex) {
             System.out.println("Archivo no encontrado");
-            return null;
         } catch (IOException ex) {
             System.out.println("Conexion fallida");
-            return null;
         }
     }
 }
