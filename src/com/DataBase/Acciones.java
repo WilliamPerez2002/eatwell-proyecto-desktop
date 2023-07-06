@@ -3,7 +3,6 @@ package com.DataBase;
 import com.backend.*;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
@@ -87,7 +86,7 @@ public class Acciones {
             if (categorias.isEmpty()) {
                 errorGrupo.setText("Seleccione una Categoria");
             }
-            if (!fr.nombreDuplicado(nombre.getText(), error, exito) && !nombre.getText().isEmpty() && caloriasValidas && categorias.isEmpty()) {
+            if (!fr.nombreDuplicado(nombre.getText(), error, exito) && caloriasValidas && !categorias.isEmpty()) {
                 fr.guardar(nombre.getText(), caloriasTransformadas, categorias, exito);
                 errorCalorias.setText("");
                 nombre.setText("");

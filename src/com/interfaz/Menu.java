@@ -94,9 +94,9 @@ public class Menu extends javax.swing.JFrame {
         jchFruta = new javax.swing.JCheckBox();
         jchProteinas = new javax.swing.JCheckBox();
         jchLacteos = new javax.swing.JCheckBox();
-        jLblErrorGrupo = new javax.swing.JLabel();
+        jLblErrorGrupoAgregar = new javax.swing.JLabel();
         jlblErrorNombreAgregar = new javax.swing.JLabel();
-        jlblErrorCalorias = new javax.swing.JLabel();
+        jlblErrorCaloriasAgregar = new javax.swing.JLabel();
         jtxtCaloriasAgregar = new javax.swing.JTextField();
         jlblExitoAgregar = new javax.swing.JLabel();
         jPanelEditar = new javax.swing.JPanel();
@@ -596,18 +596,18 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanelAgregar.add(jchLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 160, -1));
 
-        jLblErrorGrupo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLblErrorGrupo.setForeground(new java.awt.Color(255, 0, 51));
-        jLblErrorGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanelAgregar.add(jLblErrorGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 450, 20));
+        jLblErrorGrupoAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLblErrorGrupoAgregar.setForeground(new java.awt.Color(255, 0, 51));
+        jLblErrorGrupoAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelAgregar.add(jLblErrorGrupoAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 450, 20));
 
         jlblErrorNombreAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblErrorNombreAgregar.setForeground(new java.awt.Color(255, 0, 51));
-        jPanelAgregar.add(jlblErrorNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 440, 20));
+        jPanelAgregar.add(jlblErrorNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 440, 20));
 
-        jlblErrorCalorias.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jlblErrorCalorias.setForeground(new java.awt.Color(255, 0, 51));
-        jPanelAgregar.add(jlblErrorCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 20));
+        jlblErrorCaloriasAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblErrorCaloriasAgregar.setForeground(new java.awt.Color(255, 0, 51));
+        jPanelAgregar.add(jlblErrorCaloriasAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 450, 20));
 
         jtxtCaloriasAgregar.setBackground(new java.awt.Color(75, 77, 102));
         jtxtCaloriasAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
@@ -1160,7 +1160,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
-        this.ac.comrpobarDatos(jtxtNombreAgregar, jtxtCaloriasAgregar, obtenerCategoriasAgregar(), jlblErrorNombreAgregar, jlblErrorCalorias, jLblErrorGrupo, jlblExitoAgregar);
+        this.ac.comrpobarDatos(jtxtNombreAgregar, jtxtCaloriasAgregar, obtenerCategoriasAgregar(), jlblErrorNombreAgregar, jlblErrorCaloriasAgregar, jLblErrorGrupoAgregar, jlblExitoAgregar);
+        System.out.println("Entra al evento");
         limpiarCheckBoxAgregar(1);
     }//GEN-LAST:event_jLabel14MouseClicked
 
@@ -1278,8 +1279,8 @@ public class Menu extends javax.swing.JFrame {
 
         if (caso == 0) {
             this.jlblErrorNombreAgregar.setText("");
-            this.jlblErrorCalorias.setText("");
-            this.jLblErrorGrupo.setText("");
+            this.jlblErrorCaloriasAgregar.setText("");
+            this.jLblErrorGrupoAgregar.setText("");
             this.jlblExitoAgregar.setText("");
         }
     }
@@ -1404,7 +1405,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLblEliminado;
-    private javax.swing.JLabel jLblErrorGrupo;
+    private javax.swing.JLabel jLblErrorGrupoAgregar;
     private javax.swing.JPanel jPanelAgregar;
     private javax.swing.JPanel jPanelEditar;
     private javax.swing.JPanel jPanelEditarContrasena;
@@ -1425,7 +1426,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox jchLacteos;
     private javax.swing.JCheckBox jchProteinas;
     private javax.swing.JCheckBox jchVerduras;
-    private javax.swing.JLabel jlblErrorCalorias;
+    private javax.swing.JLabel jlblErrorCaloriasAgregar;
     private javax.swing.JLabel jlblErrorCaloriasEditar;
     private javax.swing.JLabel jlblErrorGrupoEditar;
     private javax.swing.JLabel jlblErrorNombreAgregar;
