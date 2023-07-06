@@ -4,17 +4,19 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.Precondition;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.cloud.FirestoreClient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,37 +26,34 @@ public class AdministrarFirebase {
 
     private Alimento al = new Alimento();
 
-    Firestore bd;
-
-    private boolean guardarAlimento(String coleccion, String documento, Map<String, Object> datos) {
-        bd = FirestoreClient.getFirestore();
+    private boolean guardarAlimento(String coleccion, String documento, Map<String, Object> datos, JLabel exito) {
         try {
-            DocumentReference docRef = bd.collection(coleccion).document(documento);
+            DocumentReference docRef = Firebase.db.collection(coleccion).document(documento);
             ApiFuture<WriteResult> result = docRef.set(datos);
-            System.out.println("Agregado Correctamente");
+            exito.setText("Ultimo alimento agregado con exito");
             return true;
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            exito.setText("Error");
             return false;
         }
     }
 
-    public void guardar(String nombre, int calorias, ArrayList<String> categorias) {
+    public void guardar(String nombre, double calorias, ArrayList<String> categorias, JLabel exito) {
         int id = (int) (Math.random() * 100000);
         try {
             Map<String, Object> datos = new HashMap<>();
             datos.put("Nombre", nombre);
             datos.put("Calorias", calorias);
             datos.put("Categorias", categorias);
-            guardarAlimento("Alimentos", String.valueOf(id), datos);
+            guardarAlimento("Alimentos", String.valueOf(id), datos,exito);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    public void cargarCombobox(JComboBox llenar) {
+    public void cargarCombobox(JComboBox<String> llenar, JLabel error) {
         try {
-            llenar.removeAllItems();
+            llenar.setModel(new DefaultComboBoxModel<>());
             llenar.addItem("Seleccione un alimento");
             CollectionReference alimentos = Firebase.db.collection("Alimentos");
             ApiFuture<QuerySnapshot> qs = alimentos.get();
@@ -62,12 +61,13 @@ public class AdministrarFirebase {
                 llenar.addItem(document.getString("Nombre"));
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            error.setText("Error: " + e.getMessage());
         }
     }
 
-    public ArrayList<String> cargarDatosEditar(String nombreSeleccionado, JFormattedTextField calorias) {
+    public ArrayList<String> cargarDatosEditar(String nombreSeleccionado, JTextField calorias) {
         al = cargarDatos(nombreSeleccionado);
+        System.out.println(al.getCalorias());
         calorias.setText(String.valueOf(al.getCalorias()));
         return al.getCategrias();
     }
@@ -93,30 +93,27 @@ public class AdministrarFirebase {
         }
     }
 
-    private boolean editarAlimento(String coleccion, String documento, Map<String, Object> datos) {
-        bd = FirestoreClient.getFirestore();
+    private boolean editarAlimento(String coleccion, String documento, Map<String, Object> datos, JLabel exito) {
         try {
-            DocumentReference docRef = bd.collection(coleccion).document(documento);
+            DocumentReference docRef = Firebase.db.collection(coleccion).document(documento);
             ApiFuture<WriteResult> result = docRef.update(datos);
-            System.out.println("Editado Correctamente");
             return true;
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error" + e.getMessage());
             return false;
         }
     }
 
-    public void editar(String nombre, int calorias, ArrayList<String> categorias) {
+    public void editar(String nombre, double calorias, ArrayList<String> categorias, JLabel exito) {
         String id = obtenerID(nombre);
         try {
             Map<String, Object> datos = new HashMap<>();
             datos.put("Nombre", nombre);
             datos.put("Calorias", calorias);
             datos.put("Categorias", categorias);
-            System.out.println("mapea los datos");
-            editarAlimento("Alimentos", id, datos);
+            editarAlimento("Alimentos", id, datos,exito);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error" + e.getMessage());
         }
     }
 
@@ -135,17 +132,36 @@ public class AdministrarFirebase {
         return "";
     }
 
-    public boolean eliminarAlimento(String nombre) {
-        bd = FirestoreClient.getFirestore();
+    public boolean eliminarAlimento(String nombre, JLabel eliminado, String datoEliminado) {
         String documento = obtenerID(nombre);
         try {
-            DocumentReference docRef = bd.collection("Alimentos").document(documento);
+            DocumentReference docRef = Firebase.db.collection("Alimentos").document(documento);
             ApiFuture<WriteResult> result = docRef.delete(Precondition.NONE);
-            System.out.println("Eliminado Correctamente");
+            eliminado.setText(datoEliminado+" eliminado correctamente");
             return true;
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error" + e.getMessage());
             return false;
+        }
+    }
+        public boolean nombreDuplicado(String nombre, JLabel error, JLabel exito) {
+            if (nombre.length()==0) {
+                error.setText("Nombre Vacio");
+                return true;
+            }
+        try {
+            CollectionReference alimentos = Firebase.db.collection("Alimentos");
+            ApiFuture<QuerySnapshot> qs = alimentos.get();
+            for (DocumentSnapshot document : qs.get().getDocuments()) {
+                if (document.getString("Nombre").toLowerCase().equals(nombre.toLowerCase())) {
+                    error.setText("Nombre duplicado");
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            error.setText("Error: " + e.getMessage());
+            return true;
         }
     }
 }

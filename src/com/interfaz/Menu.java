@@ -26,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        fb.iniciarConexionFirebase();
+        this.fb.iniciarConexionFirebase();
     }
 
     public void nombreUsuario(String nombre) {
@@ -77,6 +77,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jlblTextoErrorContrasenaDiferente = new javax.swing.JLabel();
         jlblTextoErrorContrasenaIngresada = new javax.swing.JLabel();
+        jlblTextoContrasenaDiferenteSucess = new javax.swing.JLabel();
         jPanelAgregar = new javax.swing.JPanel();
         jpAceptarAgregar = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -87,13 +88,17 @@ public class Menu extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jtxtNombreAgregar = new javax.swing.JTextField();
-        jftxAgregarCalorias = new javax.swing.JFormattedTextField();
         jchVerduras = new javax.swing.JCheckBox();
         jchBebidas = new javax.swing.JCheckBox();
         jchGrano = new javax.swing.JCheckBox();
         jchFruta = new javax.swing.JCheckBox();
         jchProteinas = new javax.swing.JCheckBox();
         jchLacteos = new javax.swing.JCheckBox();
+        jLblErrorGrupo = new javax.swing.JLabel();
+        jlblErrorNombreAgregar = new javax.swing.JLabel();
+        jlblErrorCalorias = new javax.swing.JLabel();
+        jtxtCaloriasAgregar = new javax.swing.JTextField();
+        jlblExitoAgregar = new javax.swing.JLabel();
         jPanelEditar = new javax.swing.JPanel();
         jpAceptarEditar = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -103,7 +108,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jftfEditarCalorias = new javax.swing.JFormattedTextField();
         jchEditarVerduras = new javax.swing.JCheckBox();
         jchEditarBebidas = new javax.swing.JCheckBox();
         jchEditarGrano = new javax.swing.JCheckBox();
@@ -111,6 +115,11 @@ public class Menu extends javax.swing.JFrame {
         jchEditarProteinas = new javax.swing.JCheckBox();
         jchEditarLacteos = new javax.swing.JCheckBox();
         jcbEditarAlimentos = new javax.swing.JComboBox<>();
+        errorinterno = new javax.swing.JLabel();
+        jlblErrorCaloriasEditar = new javax.swing.JLabel();
+        jlblErrorGrupoEditar = new javax.swing.JLabel();
+        jlblExitoEditar = new javax.swing.JLabel();
+        jtxtCaloriasEditar = new javax.swing.JTextField();
         jPanelEliminar = new javax.swing.JPanel();
         jpAceptarEliminar = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -119,6 +128,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jcbEliminar = new javax.swing.JComboBox<>();
+        jLblEliminado = new javax.swing.JLabel();
         jPanelReportes = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -259,7 +269,7 @@ public class Menu extends javax.swing.JFrame {
 
         jlblNombreUsuarioMenu.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 50)); // NOI18N
         jlblNombreUsuarioMenu.setForeground(new java.awt.Color(75, 77, 102));
-        jlblNombreUsuarioMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblNombreUsuarioMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlblNombreUsuarioMenu.setText("Aa");
         jPanelPerfil.add(jlblNombreUsuarioMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 400, -1));
 
@@ -422,12 +432,17 @@ public class Menu extends javax.swing.JFrame {
         jlblTextoErrorContrasenaDiferente.setBackground(new java.awt.Color(255, 0, 0));
         jlblTextoErrorContrasenaDiferente.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblTextoErrorContrasenaDiferente.setForeground(new java.awt.Color(255, 0, 0));
-        jPanelEditarContrasena.add(jlblTextoErrorContrasenaDiferente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, 270, 20));
+        jPanelEditarContrasena.add(jlblTextoErrorContrasenaDiferente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 320, 20));
 
         jlblTextoErrorContrasenaIngresada.setBackground(new java.awt.Color(255, 0, 0));
         jlblTextoErrorContrasenaIngresada.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblTextoErrorContrasenaIngresada.setForeground(new java.awt.Color(255, 0, 0));
-        jPanelEditarContrasena.add(jlblTextoErrorContrasenaIngresada, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 270, 20));
+        jPanelEditarContrasena.add(jlblTextoErrorContrasenaIngresada, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 320, 20));
+
+        jlblTextoContrasenaDiferenteSucess.setBackground(new java.awt.Color(255, 0, 0));
+        jlblTextoContrasenaDiferenteSucess.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblTextoContrasenaDiferenteSucess.setForeground(new java.awt.Color(51, 255, 51));
+        jPanelEditarContrasena.add(jlblTextoContrasenaDiferenteSucess, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 320, 20));
 
         jtpOpciones.addTab("tab2", jPanelEditarContrasena);
 
@@ -467,6 +482,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel15.setToolTipText("");
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel15MouseEntered(evt);
             }
@@ -510,18 +528,7 @@ public class Menu extends javax.swing.JFrame {
                 jtxtNombreAgregarActionPerformed(evt);
             }
         });
-        jPanelAgregar.add(jtxtNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 450, 50));
-
-        jftxAgregarCalorias.setBackground(new java.awt.Color(75, 77, 102));
-        jftxAgregarCalorias.setForeground(new java.awt.Color(255, 255, 255));
-        jftxAgregarCalorias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jftxAgregarCalorias.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jftxAgregarCalorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jftxAgregarCaloriasActionPerformed(evt);
-            }
-        });
-        jPanelAgregar.add(jftxAgregarCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 50));
+        jPanelAgregar.add(jtxtNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 450, 50));
 
         jchVerduras.setBackground(new java.awt.Color(255, 255, 255));
         jchVerduras.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
@@ -588,6 +595,34 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanelAgregar.add(jchLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 160, -1));
+
+        jLblErrorGrupo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLblErrorGrupo.setForeground(new java.awt.Color(255, 0, 51));
+        jLblErrorGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelAgregar.add(jLblErrorGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 450, 20));
+
+        jlblErrorNombreAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblErrorNombreAgregar.setForeground(new java.awt.Color(255, 0, 51));
+        jPanelAgregar.add(jlblErrorNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 440, 20));
+
+        jlblErrorCalorias.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblErrorCalorias.setForeground(new java.awt.Color(255, 0, 51));
+        jPanelAgregar.add(jlblErrorCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 20));
+
+        jtxtCaloriasAgregar.setBackground(new java.awt.Color(75, 77, 102));
+        jtxtCaloriasAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        jtxtCaloriasAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jtxtCaloriasAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtCaloriasAgregarActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(jtxtCaloriasAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 50));
+
+        jlblExitoAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblExitoAgregar.setForeground(new java.awt.Color(51, 255, 51));
+        jlblExitoAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelAgregar.add(jlblExitoAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 320, 30));
 
         jtpOpciones.addTab("tab3", jPanelAgregar);
 
@@ -665,12 +700,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel30.setText("Calorias:");
         jPanelEditar.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 140, 50));
 
-        jftfEditarCalorias.setBackground(new java.awt.Color(75, 77, 102));
-        jftfEditarCalorias.setForeground(new java.awt.Color(255, 255, 255));
-        jftfEditarCalorias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jftfEditarCalorias.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jPanelEditar.add(jftfEditarCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 50));
-
         jchEditarVerduras.setBackground(new java.awt.Color(255, 255, 255));
         jchEditarVerduras.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
         jchEditarVerduras.setForeground(new java.awt.Color(75, 77, 102));
@@ -740,12 +769,42 @@ public class Menu extends javax.swing.JFrame {
         jcbEditarAlimentos.setBackground(new java.awt.Color(75, 77, 102));
         jcbEditarAlimentos.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
         jcbEditarAlimentos.setForeground(new java.awt.Color(255, 255, 255));
+        jcbEditarAlimentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcbEditarAlimentosMouseClicked(evt);
+            }
+        });
         jcbEditarAlimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbEditarAlimentosActionPerformed(evt);
             }
         });
         jPanelEditar.add(jcbEditarAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 450, 50));
+        jPanelEditar.add(errorinterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 740, 50));
+
+        jlblErrorCaloriasEditar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblErrorCaloriasEditar.setForeground(new java.awt.Color(255, 0, 0));
+        jPanelEditar.add(jlblErrorCaloriasEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 20));
+
+        jlblErrorGrupoEditar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblErrorGrupoEditar.setForeground(new java.awt.Color(255, 0, 0));
+        jlblErrorGrupoEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelEditar.add(jlblErrorGrupoEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 450, 20));
+
+        jlblExitoEditar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblExitoEditar.setForeground(new java.awt.Color(102, 255, 51));
+        jlblExitoEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelEditar.add(jlblExitoEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 450, 20));
+
+        jtxtCaloriasEditar.setBackground(new java.awt.Color(75, 77, 102));
+        jtxtCaloriasEditar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        jtxtCaloriasEditar.setForeground(new java.awt.Color(255, 255, 255));
+        jtxtCaloriasEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtCaloriasEditarActionPerformed(evt);
+            }
+        });
+        jPanelEditar.add(jtxtCaloriasEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 50));
 
         jtpOpciones.addTab("tab4", jPanelEditar);
 
@@ -785,6 +844,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel32.setToolTipText("");
         jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel32MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel32MouseEntered(evt);
             }
@@ -817,6 +879,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanelEliminar.add(jcbEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 450, 50));
+
+        jLblEliminado.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        jLblEliminado.setForeground(new java.awt.Color(51, 255, 51));
+        jLblEliminado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelEliminar.add(jLblEliminado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 740, 70));
 
         jtpOpciones.addTab("tab5", jPanelEliminar);
 
@@ -990,14 +1057,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-        this.af.cargarCombobox(jcbEditarAlimentos);
         this.ac.cambiarPestañaMenu(jtpOpciones, 3);
+        this.af.cargarCombobox(jcbEditarAlimentos, errorinterno);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         this.ac.cambiarPestañaMenu(jtpOpciones, 4);
-                this.af.cargarCombobox(jcbEliminar);
+        this.af.cargarCombobox(jcbEliminar, errorinterno);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -1008,11 +1075,13 @@ public class Menu extends javax.swing.JFrame {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         this.ac.cambiarPestañaMenu(jtpOpciones, 1);
+        this.jlblTextoContrasenaDiferenteSucess.setText("");
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
         // TODO add your handling code here:
         this.ac.limpiarCambioContraseña(jlblTextoErrorContrasenaIngresada, jlblTextoErrorContrasenaDiferente, jpswContrasenaAnterior, jpswContrasenaNueva, jpswConfirmarContrasena);
+        this.jlblTextoContrasenaDiferenteSucess.setText("");
         this.ac.cambiarPestañaMenu(jtpOpciones, 0);
     }//GEN-LAST:event_jLabel18MouseClicked
 
@@ -1086,18 +1155,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
         // TODO add your handling code here:
-        this.ac.cambiarContraseña(jlblNombreUsuarioMenu.getText(), jlblTextoErrorContrasenaIngresada, jlblTextoErrorContrasenaDiferente, jpswContrasenaAnterior, jpswContrasenaNueva, jpswConfirmarContrasena);
+        this.ac.cambiarContraseña(jlblNombreUsuarioMenu.getText(), jlblTextoErrorContrasenaIngresada, jlblTextoErrorContrasenaDiferente, jpswContrasenaAnterior, jpswContrasenaNueva, jpswConfirmarContrasena, jlblTextoContrasenaDiferenteSucess);
     }//GEN-LAST:event_jLabel23MouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
-        this.ac.comrpobarDatos(jtxtNombreAgregar, jftxAgregarCalorias, obtenerCategoriasAgregar());
-        limpiarCheckBoxAgregar();
+        this.ac.comrpobarDatos(jtxtNombreAgregar, jtxtCaloriasAgregar, obtenerCategoriasAgregar(), jlblErrorNombreAgregar, jlblErrorCalorias, jLblErrorGrupo, jlblExitoAgregar);
+        limpiarCheckBoxAgregar(1);
     }//GEN-LAST:event_jLabel14MouseClicked
-
-    private void jftxAgregarCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftxAgregarCaloriasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jftxAgregarCaloriasActionPerformed
 
     private void jcbEditarAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosActionPerformed
         // TODO add your handling code here:
@@ -1108,23 +1173,52 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         jcbEditarAlimentos.setSelectedIndex(0);
         limpiarDatosEditar();
+        limpiarErroresEditar();
     }//GEN-LAST:event_jLabel26MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
         // TODO add your handling code here:
-        this.ac.comrpobarDatosEditados(jcbEditarAlimentos, jftfEditarCalorias, categoriasEditadas());
+        this.ac.comrpobarDatosEditados(jcbEditarAlimentos, jtxtCaloriasEditar, categoriasEditadas(), jlblErrorCaloriasEditar, jlblErrorGrupoEditar, jlblExitoEditar, jcbEditarAlimentos);
         this.limpiarDatosEditar();
     }//GEN-LAST:event_jLabel25MouseClicked
 
     private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
         // TODO add your handling code here:
-        this.af.eliminarAlimento(this.jcbEliminar.getSelectedItem().toString());
-        this.af.cargarCombobox(jcbEliminar);
+        this.af.eliminarAlimento(this.jcbEliminar.getSelectedItem().toString(), jLblEliminado,this.jcbEliminar.getSelectedItem().toString());
+        this.af.cargarCombobox(jcbEliminar, errorinterno);
     }//GEN-LAST:event_jLabel31MouseClicked
 
     private void jcbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbEliminarActionPerformed
+
+    private void jcbEditarAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEditarAlimentosMouseClicked
+
+    private void jtxtCaloriasAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCaloriasAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtCaloriasAgregarActionPerformed
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        this.limpiarCheckBoxAgregar(0);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jtxtCaloriasEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCaloriasEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtCaloriasEditarActionPerformed
+
+    private void jLabel32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseClicked
+        // TODO add your handling code here:
+        limpiarEliminar();
+    }//GEN-LAST:event_jLabel32MouseClicked
+
+    private void limpiarErroresEditar() {
+        jlblExitoEditar.setText("");
+        jlblErrorCaloriasEditar.setText("");
+        jlblErrorGrupoEditar.setText("");
+    }
 
     private ArrayList<String> obtenerCategoriasAgregar() {
         ArrayList<String> categorias = new ArrayList<>();
@@ -1172,21 +1266,39 @@ public class Menu extends javax.swing.JFrame {
         return categorias;
     }
 
-    private void limpiarCheckBoxAgregar() {
+    private void limpiarCheckBoxAgregar(int caso) {
         jtxtNombreAgregar.setText("");
-        jftxAgregarCalorias.setText("");
+        jtxtCaloriasAgregar.setText("");
         jchBebidas.setSelected(false);
         jchVerduras.setSelected(false);
         jchProteinas.setSelected(false);
         jchLacteos.setSelected(false);
         jchGrano.setSelected(false);
         jchFruta.setSelected(false);
+
+        if (caso == 0) {
+            this.jlblErrorNombreAgregar.setText("");
+            this.jlblErrorCalorias.setText("");
+            this.jLblErrorGrupo.setText("");
+            this.jlblExitoAgregar.setText("");
+        }
+    }
+
+    @Override
+    public void pack() {
+        super.pack(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    private void limpiarEliminar() {
+        jLblEliminado.setText("");
+        jcbEliminar.setSelectedIndex(0);
+
     }
 
     private void marcarDatos() {
         limpiarDatosEditar();
         if (!jcbEditarAlimentos.getSelectedItem().equals("Seleccione un alimento")) {
-            ArrayList<String> categorias = af.cargarDatosEditar(jcbEditarAlimentos.getSelectedItem().toString(), jftfEditarCalorias);
+            ArrayList<String> categorias = af.cargarDatosEditar(jcbEditarAlimentos.getSelectedItem().toString(), jtxtCaloriasEditar);
             for (int i = 0; i < categorias.size(); i++) {
                 if (categorias.get(i).equals("Bebida")) {
                     jchEditarBebidas.setSelected(true);
@@ -1211,7 +1323,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     private void limpiarDatosEditar() {
-        jftfEditarCalorias.setText("");
+        jtxtCaloriasEditar.setText("");
         jchEditarBebidas.setSelected(false);
         jchEditarFruta.setSelected(false);
         jchEditarGrano.setSelected(false);
@@ -1257,6 +1369,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorinterno;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -1290,6 +1403,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblEliminado;
+    private javax.swing.JLabel jLblErrorGrupo;
     private javax.swing.JPanel jPanelAgregar;
     private javax.swing.JPanel jPanelEditar;
     private javax.swing.JPanel jPanelEditarContrasena;
@@ -1310,9 +1425,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox jchLacteos;
     private javax.swing.JCheckBox jchProteinas;
     private javax.swing.JCheckBox jchVerduras;
-    private javax.swing.JFormattedTextField jftfEditarCalorias;
-    private javax.swing.JFormattedTextField jftxAgregarCalorias;
+    private javax.swing.JLabel jlblErrorCalorias;
+    private javax.swing.JLabel jlblErrorCaloriasEditar;
+    private javax.swing.JLabel jlblErrorGrupoEditar;
+    private javax.swing.JLabel jlblErrorNombreAgregar;
+    private javax.swing.JLabel jlblExitoAgregar;
+    private javax.swing.JLabel jlblExitoEditar;
     private javax.swing.JLabel jlblNombreUsuarioMenu;
+    private javax.swing.JLabel jlblTextoContrasenaDiferenteSucess;
     private javax.swing.JLabel jlblTextoErrorContrasenaDiferente;
     private javax.swing.JLabel jlblTextoErrorContrasenaIngresada;
     private javax.swing.JPanel jpAceptarAgregar;
@@ -1335,6 +1455,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpswContrasenaAnterior;
     private javax.swing.JPasswordField jpswContrasenaNueva;
     private javax.swing.JTabbedPane jtpOpciones;
+    private javax.swing.JTextField jtxtCaloriasAgregar;
+    private javax.swing.JTextField jtxtCaloriasEditar;
     private javax.swing.JTextField jtxtNombreAgregar;
     // End of variables declaration//GEN-END:variables
 

@@ -46,7 +46,7 @@ public class Acciones {
         pestañas.setSelectedIndex(pestaña);
     }
 
-    public void cambiarContraseña(String administrador, JLabel errorCambioOrigen, JLabel errorCambioNuevo, JPasswordField contrasena1, JPasswordField contrasena2, JPasswordField contrasena3) {
+    public void cambiarContraseña(String administrador, JLabel errorCambioOrigen, JLabel errorCambioNuevo, JPasswordField contrasena1, JPasswordField contrasena2, JPasswordField contrasena3, JLabel correcto) {
         String contrasenaInicial = String.valueOf(contrasena1.getPassword());
         String contrasenaUno = String.valueOf(contrasena2.getPassword());
         String contrasenaDos = String.valueOf(contrasena3.getPassword());
@@ -54,7 +54,10 @@ public class Acciones {
         boolean segundoFiltro = ejecuciones.comprarNuevasContrasenas(contrasenaUno, contrasenaDos, errorCambioNuevo);
         if (primerFiltro == true && segundoFiltro == true) {
             ejecuciones.actualizarContraseña(contrasenaUno, administrador);
+            correcto.setText("Contraseña actualizada!");
             limpiarCambioContraseña(errorCambioOrigen, errorCambioNuevo, contrasena1, contrasena2, contrasena3);
+        } else {
+            correcto.setText("");
         }
         contrasena1.setText("");
         contrasena2.setText("");
@@ -68,19 +71,60 @@ public class Acciones {
         contrasena2.setText("");
         contrasena3.setText("");
     }
-    
-    public void comrpobarDatos(JTextField nombre, JFormattedTextField calorias,ArrayList<String> categorias){
-        if (!nombre.getText().isEmpty() && !calorias.getText().isEmpty() && !categorias.isEmpty()) {
-            fr.guardar(nombre.getText(), Integer.parseInt(calorias.getText()), categorias);
-            nombre.setText("");
-            calorias.setText("");
+
+    public void comrpobarDatos(JTextField nombre, JTextField calorias, ArrayList<String> categorias, JLabel error, JLabel errorCalorias, JLabel errorGrupo, JLabel exito) {
+        error.setText("");
+        errorCalorias.setText("");
+        exito.setText("");
+        errorGrupo.setText("");
+        try {
+            double caloriasTransformadas = Double.parseDouble(calorias.getText());
+            boolean caloriasValidas = true;
+            if (caloriasTransformadas <= 0 || caloriasTransformadas > 900) {
+                caloriasValidas = false;
+
+            }
+            if (categorias.isEmpty()) {
+                errorGrupo.setText("Seleccione una Categoria");
+            }
+            if (!fr.nombreDuplicado(nombre.getText(), error, exito) && !nombre.getText().isEmpty() && caloriasValidas && categorias.isEmpty()) {
+                fr.guardar(nombre.getText(), caloriasTransformadas, categorias, exito);
+                errorCalorias.setText("");
+                nombre.setText("");
+                calorias.setText("");
+                errorGrupo.setText("");
+            }
+        } catch (Exception e) {
+            errorCalorias.setText("Escriba un numero");
         }
+
     }
-    
-        public void comrpobarDatosEditados(JComboBox nombre, JFormattedTextField calorias,ArrayList<String> categorias){
-            if (!calorias.getText().isEmpty() && !categorias.isEmpty()) {
-            fr.editar(nombre.getSelectedItem().toString(), Integer.parseInt(calorias.getText()), categorias);
-            calorias.setText("");
+
+    public void comrpobarDatosEditados(JComboBox nombre, JTextField calorias, ArrayList<String> categorias, JLabel errorCalorias, JLabel errorGrupo, JLabel exito, JComboBox<String> seleccion) {
+        try {
+            errorCalorias.setText("");
+            exito.setText("");
+            errorGrupo.setText("");
+            double caloriasTransformadas = Double.parseDouble(calorias.getText());
+            boolean caloriasValidas = true;
+            if (caloriasTransformadas <= 0 || caloriasTransformadas > 900) {
+                caloriasValidas = false;
+
+            }
+            if (categorias.isEmpty()) {
+                errorGrupo.setText("Seleccione una Categoria");
+            }
+            if (caloriasValidas &&!categorias.isEmpty()) {
+                fr.editar(nombre.getSelectedItem().toString(), caloriasTransformadas, categorias, exito);
+                exito.setText("Almiento editado");
+                errorGrupo.setText("");
+                calorias.setText("");
+                errorCalorias.setText("");
+                seleccion.setSelectedIndex(0);
+            }
+        } catch (Exception e) {
+            errorCalorias.setText("Escriba un numero");
         }
+
     }
 }

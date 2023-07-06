@@ -5,21 +5,21 @@ import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  *
  * @author marlo
  */
 public class Firebase {
+
     public static Firestore db;
 
     public void iniciarConexionFirebase() {
         try {
-            FileInputStream serviceAccount
-                    = new FileInputStream("src/com/DataBase/proyectoagiles.json");
+            InputStream serviceAccount = getClass().getResourceAsStream("/com/DataBase/proyectoagiles.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://proyectoagiles-a0340-default-rtdb.firebaseio.com")

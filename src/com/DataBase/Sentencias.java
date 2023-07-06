@@ -9,10 +9,10 @@ import javax.swing.JLabel;
  * @author marlo
  */
 public class Sentencias {
-    
+
     private final String[] BD = {"ADMINISTRADORES", "USUARIOS", "PASSWD", "STATE", "INTENTOS"};
     private final Conexion con = new Conexion();
-    
+
     public String comprobarUsuarioYBloqueo(JTextField usuario) {
         try {
             ResultSet rs = this.query(usuario.getText());
@@ -25,7 +25,7 @@ public class Sentencias {
             return "vacio";
         }
     }
-    
+
     public boolean iniciarSesion(String contraseña, String usuario, JLabel errorUsuario) {
         try {
             ResultSet rs = this.query(usuario);
@@ -46,15 +46,15 @@ public class Sentencias {
             return false;
         }
     }
-    
+
     private ResultSet query(String usuario) throws SQLException {
-            Connection cn = this.con.getConexion();
-            String sql = "SELECT * FROM " + this.BD[0] + " WHERE " + this.BD[1] + " = ?";
-            PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, usuario);
-            return ps.executeQuery();
+        Connection cn = this.con.getConexion();
+        String sql = "SELECT * FROM " + this.BD[0] + " WHERE " + this.BD[1] + " = ?";
+        PreparedStatement ps = cn.prepareStatement(sql);
+        ps.setString(1, usuario);
+        return ps.executeQuery();
     }
-    
+
     private void setIntento(String usuario) {
         try {
             Connection cn = this.con.getConexion();
@@ -66,7 +66,7 @@ public class Sentencias {
             System.out.println("Error setIntento" + ex);
         }
     }
-    
+
     private void limpiarIntentos(String usuario) {
         try {
             Connection cn = this.con.getConexion();
@@ -78,7 +78,7 @@ public class Sentencias {
             System.out.println("Error" + ex);
         }
     }
-    
+
     private void comprobarIntentos(String usuario, JLabel errorUsuario) {
         try {
             ResultSet rs = this.query(usuario);
@@ -91,7 +91,7 @@ public class Sentencias {
         } catch (SQLException ex) {
         }
     }
-    
+
     private void bloquearUsuario(String usuario, JLabel errorUsuario) {
         try {
             Connection cn = this.con.getConexion();
@@ -105,11 +105,15 @@ public class Sentencias {
             System.out.println("Error" + ex);
         }
     }
-    
+
     public boolean compararContraseña(String contrasena, String administrador, JLabel errorCambio) {
+        if (contrasena.length() == 0) {
+            errorCambio.setText("Contraseña vacia");
+            return false;
+        }
         try {
             ResultSet rs = query(administrador);
-            if (rs.next()) {                
+            if (rs.next()) {
                 String contrasenaBD = rs.getString(this.BD[2]);
                 if (contrasenaBD.equals(contrasena)) {
                     return true;
@@ -122,8 +126,16 @@ public class Sentencias {
             return false;
         }
     }
-    
+
     public boolean comprarNuevasContrasenas(String contrasena1, String contrasena2, JLabel errorCambio) {
+        if (contrasena1.length() == 0) {
+            errorCambio.setText("Campo de nueva contraseña vacio");
+            return false;
+        }
+        if (contrasena2.length() == 0) {
+            errorCambio.setText("Campo de verificacion vacio");
+            return false;
+        }
         if (contrasena1.equals(contrasena2)) {
             return true;
         } else {
@@ -131,7 +143,7 @@ public class Sentencias {
             return false;
         }
     }
-    
+
     public void actualizarContraseña(String contrasena, String administrador) {
         try {
             Connection cn = this.con.getConexion();
