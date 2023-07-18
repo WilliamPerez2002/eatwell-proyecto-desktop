@@ -36,14 +36,15 @@ public class AdministrarFirebase {
         }
     }
 
-    public void guardar(String nombre, double calorias, ArrayList<String> categorias, JLabel exito) {
+    public void guardar(String nombre, double calorias, ArrayList<String> categorias, JLabel exito, String unidad) {
         int id = (int) (Math.random() * 100000);
         try {
             Map<String, Object> datos = new HashMap<>();
             datos.put("Nombre", nombre);
             datos.put("Calorias", calorias);
             datos.put("Categorias", categorias);
-            guardarAlimento("Alimentos", String.valueOf(id), datos,exito);
+            datos.put("Unidad", unidad);
+            guardarAlimento("Alimentos", String.valueOf(id), datos, exito);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -63,10 +64,35 @@ public class AdministrarFirebase {
         }
     }
 
-    public ArrayList<String> cargarDatosEditar(String nombreSeleccionado, JTextField calorias) {
+    public ArrayList<String> cargarDatosEditar(JComboBox unidades, String nombreSeleccionado, JTextField calorias) {
         al = cargarDatos(nombreSeleccionado);
-        System.out.println(al.getCalorias());
         calorias.setText(String.valueOf(al.getCalorias()));
+        String unidad = al.getUnidad();
+        switch (unidad) {
+            case "Porciones":
+                unidades.setSelectedIndex(1);
+                break;
+            case "Unidades":
+                unidades.setSelectedIndex(2);
+                break;
+            case "Tazas":
+                unidades.setSelectedIndex(3);
+                break;
+            case "Litros":
+                unidades.setSelectedIndex(4);
+                break;
+            case "Platos":
+                unidades.setSelectedIndex(5);
+                break;
+            case "Gramos":
+                unidades.setSelectedIndex(6);
+                break;
+            case "Cucharadas":
+                unidades.setSelectedIndex(7);
+                break;
+            default:
+                throw new AssertionError();
+        }
         return al.getCategrias();
     }
 
@@ -78,9 +104,10 @@ public class AdministrarFirebase {
                 String nombre = document.getString("Nombre");
                 if (nombre.equals(nombreSeleccionado)) {
                     String categorias[] = document.get("Categorias").toString().replace(" ", "").replace("[", "").replace("]", "").split(",");
+                    String unidad = document.getString("Unidad");
                     ArrayList<String> cat = new ArrayList<>();
                     cat.addAll(Arrays.asList(categorias));
-                    al = new Alimento(nombre, document.getDouble("Calorias"), cat);
+                    al = new Alimento(nombre, unidad, document.getDouble("Calorias"), cat);
                     break;
                 }
             }
@@ -102,14 +129,15 @@ public class AdministrarFirebase {
         }
     }
 
-    public void editar(String nombre, double calorias, ArrayList<String> categorias, JLabel exito) {
+    public void editar(String nombre, double calorias, ArrayList<String> categorias, JLabel exito, String unidad) {
         String id = obtenerID(nombre);
         try {
             Map<String, Object> datos = new HashMap<>();
             datos.put("Nombre", nombre);
             datos.put("Calorias", calorias);
             datos.put("Categorias", categorias);
-            editarAlimento("Alimentos", id, datos,exito);
+            datos.put("Unidad", unidad);
+            editarAlimento("Alimentos", id, datos, exito);
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }
@@ -135,18 +163,19 @@ public class AdministrarFirebase {
         try {
             DocumentReference docRef = Firebase.db.collection("Alimentos").document(documento);
             ApiFuture<WriteResult> result = docRef.delete(Precondition.NONE);
-            eliminado.setText(datoEliminado+" eliminado correctamente");
+            eliminado.setText(datoEliminado + " eliminado correctamente");
             return true;
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
             return false;
         }
     }
-        public boolean nombreDuplicado(String nombre, JLabel error, JLabel exito) {
-            if (nombre.length()==0) {
-                error.setText("Nombre Vacio");
-                return true;
-            }
+
+    public boolean nombreDuplicado(String nombre, JLabel error, JLabel exito) {
+        if (nombre.length() == 0) {
+            error.setText("Nombre Vacio");
+            return true;
+        }
         try {
             CollectionReference alimentos = Firebase.db.collection("Alimentos");
             ApiFuture<QuerySnapshot> qs = alimentos.get();

@@ -2,8 +2,6 @@ package com.backend;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-
 /**
  *
  * @author marlo
