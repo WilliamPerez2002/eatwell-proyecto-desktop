@@ -37,7 +37,7 @@ public class CategoriaPopular extends javax.swing.JDialog {
         for (int i = 0; i < datos.size(); i++) {
             data.addValue(Integer.valueOf(datos.get(i)[1]), datos.get(i)[0], "Categoria");
         }
-        JFreeChart graficoBarras = ChartFactory.createBarChart3D("Popilaridad", "Categoria", "Cantidad", data, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart graficoBarras = ChartFactory.createBarChart3D("Popularidad", "Categoria", "Cantidad", data, PlotOrientation.VERTICAL, true, true, false);
         Reporte.setLayout(new BorderLayout());
         ChartPanel panel = new ChartPanel(graficoBarras);
         panel.setMouseWheelEnabled(true);
