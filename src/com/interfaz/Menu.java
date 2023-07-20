@@ -1,23 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.interfaz;
 
 import com.DataBase.Acciones;
 import com.DataBase.Firebase;
 import com.DataBase.AdministrarFirebase;
-import com.DataBase.ReportesFireBase;
 import com.backend.Botones;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import com.backend.Tablas;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,22 +18,47 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class Menu extends javax.swing.JFrame {
 
     private final Botones btn = new Botones();
+    private final Tablas tab = new Tablas();
     private final Acciones ac = new Acciones();
     private final Firebase fb = new Firebase();
     private final AdministrarFirebase af = new AdministrarFirebase();
-    private final ReportesFireBase rf = new ReportesFireBase();
 
     /**
      * Creates new form EnConstruccion
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.fb.iniciarConexionFirebase();
         this.llenarComboboxUnidades();
+        this.crearTablaUsuarios();
+        this.jtUsuarios.setFocusable(false);
     }
 
     public void nombreUsuario(String nombre) {
         jlblNombreUsuarioMenu.setText(nombre);
+    }
+    DefaultTableModel modelo = new DefaultTableModel() {
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+
+    };
+
+    private void crearTablaUsuarios() {
+        modelo.addColumn("N°");
+        modelo.addColumn("Usuario");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        this.jtUsuarios.setModel(modelo);
+        this.jtUsuarios.setShowGrid(true);
+        this.jtUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        this.jtUsuarios.getTableHeader().setReorderingAllowed(false);
+        this.jtUsuarios.getTableHeader().setResizingAllowed(false);
+        this.jtUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
     }
 
     /**
@@ -98,7 +115,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jtxtNombreAgregar = new javax.swing.JTextField();
         jchVerduras = new javax.swing.JCheckBox();
         jchBebidas = new javax.swing.JCheckBox();
         jchGrano = new javax.swing.JCheckBox();
@@ -108,12 +124,13 @@ public class Menu extends javax.swing.JFrame {
         jLblErrorGrupoAgregar = new javax.swing.JLabel();
         jlblErrorNombreAgregar = new javax.swing.JLabel();
         jlblErrorCaloriasAgregar = new javax.swing.JLabel();
-        jtxtCaloriasAgregar = new javax.swing.JTextField();
         jlblExitoAgregar = new javax.swing.JLabel();
-        jchBebidas1 = new javax.swing.JCheckBox();
+        jchGrasas = new javax.swing.JCheckBox();
         jLabel36 = new javax.swing.JLabel();
         jcbAgregarAlimentosUnidad = new javax.swing.JComboBox<>();
         jlblErrorCaloriasAgregar1 = new javax.swing.JLabel();
+        jtxtCaloriasAgregar = new com.Componentes.campoCalorias();
+        jtxtNombreAgregar = new com.Componentes.nombreAlimentos();
         jPanelEditar = new javax.swing.JPanel();
         jpAceptarEditar = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -134,11 +151,11 @@ public class Menu extends javax.swing.JFrame {
         jlblErrorCaloriasEditar = new javax.swing.JLabel();
         jlblErrorGrupoEditar = new javax.swing.JLabel();
         jlblExitoEditar = new javax.swing.JLabel();
-        jtxtCaloriasEditar = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jcbEditarAlimentosUnidad = new javax.swing.JComboBox<>();
         jchEditarGrasa = new javax.swing.JCheckBox();
         jlblErrorUnidad = new javax.swing.JLabel();
+        jtxtCaloriasEditar = new com.Componentes.campoCalorias();
         jPanelEliminar = new javax.swing.JPanel();
         jpAceptarEliminar = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -149,7 +166,28 @@ public class Menu extends javax.swing.JFrame {
         jcbEliminar = new javax.swing.JComboBox<>();
         jLblEliminado = new javax.swing.JLabel();
         jPanelReportes = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        Popularidad = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        MasConsumidos = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        ConsumoPorUsuario = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        ReporteCalorico = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jPanleReporteUsuarios = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jtxtBuscador = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtUsuarios = new javax.swing.JTable();
+        jlblErrorBuscar = new javax.swing.JLabel();
+        botonBuscarReporteUsuarios = new javax.swing.JPanel();
+        buscarBuscador = new javax.swing.JLabel();
+        botonReporteCancelar = new javax.swing.JPanel();
+        reporteBuscador1 = new javax.swing.JLabel();
+        botonReporteBuscador = new javax.swing.JPanel();
+        reporteBuscador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -539,16 +577,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel24.setText("Calorias:");
         jPanelAgregar.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 140, 50));
 
-        jtxtNombreAgregar.setBackground(new java.awt.Color(75, 77, 102));
-        jtxtNombreAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jtxtNombreAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        jtxtNombreAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtNombreAgregarActionPerformed(evt);
-            }
-        });
-        jPanelAgregar.add(jtxtNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 450, 50));
-
         jchVerduras.setBackground(new java.awt.Color(255, 255, 255));
         jchVerduras.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
         jchVerduras.setForeground(new java.awt.Color(75, 77, 102));
@@ -622,37 +650,27 @@ public class Menu extends javax.swing.JFrame {
 
         jlblErrorNombreAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblErrorNombreAgregar.setForeground(new java.awt.Color(255, 0, 51));
-        jPanelAgregar.add(jlblErrorNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 440, 20));
+        jPanelAgregar.add(jlblErrorNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 450, 20));
 
         jlblErrorCaloriasAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblErrorCaloriasAgregar.setForeground(new java.awt.Color(255, 0, 51));
         jPanelAgregar.add(jlblErrorCaloriasAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 450, 20));
-
-        jtxtCaloriasAgregar.setBackground(new java.awt.Color(75, 77, 102));
-        jtxtCaloriasAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jtxtCaloriasAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        jtxtCaloriasAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtCaloriasAgregarActionPerformed(evt);
-            }
-        });
-        jPanelAgregar.add(jtxtCaloriasAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 50));
 
         jlblExitoAgregar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblExitoAgregar.setForeground(new java.awt.Color(51, 255, 51));
         jlblExitoAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanelAgregar.add(jlblExitoAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 320, 30));
 
-        jchBebidas1.setBackground(new java.awt.Color(255, 255, 255));
-        jchBebidas1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jchBebidas1.setForeground(new java.awt.Color(75, 77, 102));
-        jchBebidas1.setText("Grasa");
-        jchBebidas1.addActionListener(new java.awt.event.ActionListener() {
+        jchGrasas.setBackground(new java.awt.Color(255, 255, 255));
+        jchGrasas.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        jchGrasas.setForeground(new java.awt.Color(75, 77, 102));
+        jchGrasas.setText("Grasa");
+        jchGrasas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jchBebidas1ActionPerformed(evt);
+                jchGrasasActionPerformed(evt);
             }
         });
-        jPanelAgregar.add(jchBebidas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 120, -1));
+        jPanelAgregar.add(jchGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 120, -1));
 
         jLabel36.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(75, 77, 102));
@@ -678,6 +696,19 @@ public class Menu extends javax.swing.JFrame {
         jlblErrorCaloriasAgregar1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jlblErrorCaloriasAgregar1.setForeground(new java.awt.Color(255, 0, 51));
         jPanelAgregar.add(jlblErrorCaloriasAgregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 450, 20));
+
+        jtxtCaloriasAgregar.setBackground(new java.awt.Color(75, 77, 102));
+        jtxtCaloriasAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelAgregar.add(jtxtCaloriasAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, -1));
+
+        jtxtNombreAgregar.setBackground(new java.awt.Color(75, 77, 102));
+        jtxtNombreAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jtxtNombreAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtNombreAgregarActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(jtxtNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 450, -1));
 
         jtpOpciones.addTab("tab3", jPanelAgregar);
 
@@ -851,16 +882,6 @@ public class Menu extends javax.swing.JFrame {
         jlblExitoEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanelEditar.add(jlblExitoEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 450, 20));
 
-        jtxtCaloriasEditar.setBackground(new java.awt.Color(75, 77, 102));
-        jtxtCaloriasEditar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
-        jtxtCaloriasEditar.setForeground(new java.awt.Color(255, 255, 255));
-        jtxtCaloriasEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtCaloriasEditarActionPerformed(evt);
-            }
-        });
-        jPanelEditar.add(jtxtCaloriasEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 50));
-
         jLabel33.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(75, 77, 102));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -897,6 +918,10 @@ public class Menu extends javax.swing.JFrame {
         jlblErrorUnidad.setForeground(new java.awt.Color(255, 0, 0));
         jlblErrorUnidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanelEditar.add(jlblErrorUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 450, 20));
+
+        jtxtCaloriasEditar.setBackground(new java.awt.Color(75, 77, 102));
+        jtxtCaloriasEditar.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelEditar.add(jtxtCaloriasEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, -1));
 
         jtpOpciones.addTab("tab4", jPanelEditar);
 
@@ -980,32 +1005,238 @@ public class Menu extends javax.swing.JFrame {
         jtpOpciones.addTab("tab5", jPanelEliminar);
 
         jPanelReportes.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelReportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(75, 77, 102));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Bienvenido a los reportes de Administrador");
+        jPanelReportes.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 500, 67));
+
+        Popularidad.setBackground(new java.awt.Color(86, 117, 184));
+        Popularidad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Popularidad.setLayout(new java.awt.BorderLayout());
+
+        jLabel13.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Categoria con mayor numero de productos");
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel13MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel13MouseExited(evt);
             }
         });
+        Popularidad.add(jLabel13, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout jPanelReportesLayout = new javax.swing.GroupLayout(jPanelReportes);
-        jPanelReportes.setLayout(jPanelReportesLayout);
-        jPanelReportesLayout.setHorizontalGroup(
-            jPanelReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelReportesLayout.createSequentialGroup()
-                .addGap(303, 303, 303)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
-        );
-        jPanelReportesLayout.setVerticalGroup(
-            jPanelReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelReportesLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(506, Short.MAX_VALUE))
-        );
+        jPanelReportes.add(Popularidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 510, 80));
+
+        MasConsumidos.setBackground(new java.awt.Color(86, 117, 184));
+        MasConsumidos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MasConsumidos.setLayout(new java.awt.BorderLayout());
+
+        jLabel38.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("Top de Productos con mayor Consumo");
+        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel38MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel38MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel38MouseExited(evt);
+            }
+        });
+        MasConsumidos.add(jLabel38, java.awt.BorderLayout.CENTER);
+
+        jPanelReportes.add(MasConsumidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 510, 80));
+
+        ConsumoPorUsuario.setBackground(new java.awt.Color(86, 117, 184));
+        ConsumoPorUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ConsumoPorUsuario.setLayout(new java.awt.BorderLayout());
+
+        jLabel40.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("Consumo por Usuario");
+        jLabel40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel40MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel40MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel40MouseExited(evt);
+            }
+        });
+        ConsumoPorUsuario.add(jLabel40, java.awt.BorderLayout.CENTER);
+
+        jPanelReportes.add(ConsumoPorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 510, 80));
+
+        ReporteCalorico.setBackground(new java.awt.Color(86, 117, 184));
+        ReporteCalorico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ReporteCalorico.setLayout(new java.awt.BorderLayout());
+
+        jLabel39.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("Valor Calorico de los Productos");
+        jLabel39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel39.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel39MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel39MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel39MouseExited(evt);
+            }
+        });
+        ReporteCalorico.add(jLabel39, java.awt.BorderLayout.CENTER);
+
+        jPanelReportes.add(ReporteCalorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 510, 70));
 
         jtpOpciones.addTab("tab6", jPanelReportes);
+
+        jPanleReporteUsuarios.setLayout(new java.awt.BorderLayout());
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(75, 77, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Reporte de Usuarios");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 350, 50));
+
+        jtxtBuscador.setBackground(new java.awt.Color(75, 77, 102));
+        jtxtBuscador.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        jtxtBuscador.setForeground(new java.awt.Color(255, 255, 255));
+        jtxtBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtBuscadorActionPerformed(evt);
+            }
+        });
+        jtxtBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtBuscadorKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxtBuscadorKeyTyped(evt);
+            }
+        });
+        jPanel4.add(jtxtBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 510, 50));
+
+        jtUsuarios.setBackground(new java.awt.Color(75, 77, 102));
+        jtUsuarios.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jtUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        jtUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jtUsuarios);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 650, 230));
+
+        jlblErrorBuscar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jlblErrorBuscar.setForeground(new java.awt.Color(255, 0, 51));
+        jPanel4.add(jlblErrorBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 510, 20));
+
+        botonBuscarReporteUsuarios.setBackground(new java.awt.Color(86, 117, 184));
+        botonBuscarReporteUsuarios.setForeground(new java.awt.Color(86, 117, 184));
+        botonBuscarReporteUsuarios.setLayout(new java.awt.BorderLayout());
+
+        buscarBuscador.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        buscarBuscador.setForeground(new java.awt.Color(255, 255, 255));
+        buscarBuscador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        buscarBuscador.setText("Buscar");
+        buscarBuscador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarBuscadorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buscarBuscadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buscarBuscadorMouseExited(evt);
+            }
+        });
+        botonBuscarReporteUsuarios.add(buscarBuscador, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(botonBuscarReporteUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 230, 40));
+
+        botonReporteCancelar.setBackground(new java.awt.Color(86, 117, 184));
+        botonReporteCancelar.setForeground(new java.awt.Color(86, 117, 184));
+        botonReporteCancelar.setLayout(new java.awt.BorderLayout());
+
+        reporteBuscador1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        reporteBuscador1.setForeground(new java.awt.Color(255, 255, 255));
+        reporteBuscador1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reporteBuscador1.setText("Cancelar");
+        reporteBuscador1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reporteBuscador1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reporteBuscador1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                reporteBuscador1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                reporteBuscador1MouseExited(evt);
+            }
+        });
+        botonReporteCancelar.add(reporteBuscador1, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(botonReporteCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, 230, 40));
+
+        botonReporteBuscador.setBackground(new java.awt.Color(86, 117, 184));
+        botonReporteBuscador.setForeground(new java.awt.Color(86, 117, 184));
+        botonReporteBuscador.setLayout(new java.awt.BorderLayout());
+
+        reporteBuscador.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 30)); // NOI18N
+        reporteBuscador.setForeground(new java.awt.Color(255, 255, 255));
+        reporteBuscador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reporteBuscador.setText("Reporte");
+        reporteBuscador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reporteBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reporteBuscadorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                reporteBuscadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                reporteBuscadorMouseExited(evt);
+            }
+        });
+        botonReporteBuscador.add(reporteBuscador, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(botonReporteBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, 230, 40));
+
+        jPanleReporteUsuarios.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        jtpOpciones.addTab("tab7", jPanleReporteUsuarios);
 
         jpInterzfaz.add(jtpOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 820, 600));
         jtpOpciones.getAccessibleContext().setAccessibleName("tabContrasena");
@@ -1014,78 +1245,6 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jchEditarLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarLacteosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarLacteosActionPerformed
-
-    private void jchEditarProteinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarProteinasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarProteinasActionPerformed
-
-    private void jchEditarFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarFrutaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarFrutaActionPerformed
-
-    private void jchEditarGranoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarGranoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarGranoActionPerformed
-
-    private void jchEditarBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarBebidasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarBebidasActionPerformed
-
-    private void jchEditarVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarVerdurasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarVerdurasActionPerformed
-
-    private void jchLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchLacteosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchLacteosActionPerformed
-
-    private void jchProteinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchProteinasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchProteinasActionPerformed
-
-    private void jchFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchFrutaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchFrutaActionPerformed
-
-    private void jchGranoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchGranoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchGranoActionPerformed
-
-    private void jchBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchBebidasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchBebidasActionPerformed
-
-    private void jchVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchVerdurasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jchVerdurasActionPerformed
-
-    private void jtxtNombreAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNombreAgregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtNombreAgregarActionPerformed
-
-    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCambiarContrasena, 0);
-    }//GEN-LAST:event_jLabel11MouseEntered
-
-    private void jpCambiarContrasenaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCambiarContrasenaMouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCambiarContrasena, 0);
-    }//GEN-LAST:event_jpCambiarContrasenaMouseExited
-
-    private void jpCambiarContrasenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCambiarContrasenaMouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCambiarContrasena, 1);
-    }//GEN-LAST:event_jpCambiarContrasenaMouseEntered
-
-    private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCambiarContrasena, 1);
-    }//GEN-LAST:event_jLabel11MouseExited
 
     private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
         // TODO add your handling code here:
@@ -1137,26 +1296,6 @@ public class Menu extends javax.swing.JFrame {
         this.btn.cambiarColorBotonesMenu(jpReportes, 0);
     }//GEN-LAST:event_jLabel10MouseExited
 
-    private void jLabel23MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpBotonGuardarContrasena, 0);
-    }//GEN-LAST:event_jLabel23MouseEntered
-
-    private void jLabel23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpBotonGuardarContrasena, 1);
-    }//GEN-LAST:event_jLabel23MouseExited
-
-    private void jLabel18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpBotonCancelarContrasena, 0);
-    }//GEN-LAST:event_jLabel18MouseEntered
-
-    private void jLabel18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpBotonCancelarContrasena, 1);
-    }//GEN-LAST:event_jLabel18MouseExited
-
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         this.ac.cambiarPestañaMenu(jtpOpciones, 0);
@@ -1184,11 +1323,266 @@ public class Menu extends javax.swing.JFrame {
         this.ac.cambiarPestañaMenu(jtpOpciones, 5);
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void reporteBuscadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reporteBuscadorMouseExited
         // TODO add your handling code here:
-        this.ac.cambiarPestañaMenu(jtpOpciones, 1);
-        this.jlblTextoContrasenaDiferenteSucess.setText("");
-    }//GEN-LAST:event_jLabel11MouseClicked
+        this.btn.cambiarColorBotones(botonReporteBuscador, 1);
+    }//GEN-LAST:event_reporteBuscadorMouseExited
+
+    private void reporteBuscadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reporteBuscadorMouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(botonReporteBuscador, 0);
+    }//GEN-LAST:event_reporteBuscadorMouseEntered
+
+    private void reporteBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reporteBuscadorMouseClicked
+        // TODO add your handling code here:
+        this.reporteBuscador();
+    }//GEN-LAST:event_reporteBuscadorMouseClicked
+
+    private void reporteBuscador1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reporteBuscador1MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(botonReporteCancelar, 1);
+    }//GEN-LAST:event_reporteBuscador1MouseExited
+
+    private void reporteBuscador1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reporteBuscador1MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(botonReporteCancelar, 0);
+    }//GEN-LAST:event_reporteBuscador1MouseEntered
+
+    private void reporteBuscador1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reporteBuscador1MouseClicked
+        // TODO add your handling code here:
+        this.jtxtBuscador.setText("");
+        modelo.setNumRows(0);
+        this.jtUsuarios.setModel(modelo);
+        this.ac.cambiarPestañaMenu(jtpOpciones, 5);
+    }//GEN-LAST:event_reporteBuscador1MouseClicked
+
+    private void buscarBuscadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarBuscadorMouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(botonBuscarReporteUsuarios, 1);
+    }//GEN-LAST:event_buscarBuscadorMouseExited
+
+    private void buscarBuscadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarBuscadorMouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(botonBuscarReporteUsuarios, 0);
+    }//GEN-LAST:event_buscarBuscadorMouseEntered
+
+    private void buscarBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarBuscadorMouseClicked
+        // TODO add your handling code here:
+        tab.buscador(modelo, jtUsuarios, jtxtBuscador, jlblErrorBuscar);
+    }//GEN-LAST:event_buscarBuscadorMouseClicked
+
+    private void jtxtBuscadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtBuscadorKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtBuscadorKeyTyped
+
+    private void jtxtBuscadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtBuscadorKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtBuscadorKeyPressed
+
+    private void jtxtBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtBuscadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtBuscadorActionPerformed
+
+    private void jcbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEliminarActionPerformed
+
+    private void jLabel32MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEliminar, 1);
+    }//GEN-LAST:event_jLabel32MouseExited
+
+    private void jLabel32MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEliminar, 0);
+    }//GEN-LAST:event_jLabel32MouseEntered
+
+    private void jLabel32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseClicked
+        // TODO add your handling code here:
+        limpiarEliminar();
+    }//GEN-LAST:event_jLabel32MouseClicked
+
+    private void jLabel31MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEliminar, 1);
+    }//GEN-LAST:event_jLabel31MouseExited
+
+    private void jLabel31MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEliminar, 0);
+    }//GEN-LAST:event_jLabel31MouseEntered
+
+    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+        // TODO add your handling code here:
+        this.af.eliminarAlimento(this.jcbEliminar.getSelectedItem().toString(), jLblEliminado, this.jcbEliminar.getSelectedItem().toString());
+        this.af.cargarCombobox(jcbEliminar, errorinterno);
+    }//GEN-LAST:event_jLabel31MouseClicked
+
+    private void jchEditarGrasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarGrasaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarGrasaActionPerformed
+
+    private void jcbEditarAlimentosUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosUnidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEditarAlimentosUnidadActionPerformed
+
+    private void jcbEditarAlimentosUnidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosUnidadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEditarAlimentosUnidadMouseClicked
+
+    private void jcbEditarAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosActionPerformed
+        // TODO add your handling code here:
+        this.marcarDatos();
+    }//GEN-LAST:event_jcbEditarAlimentosActionPerformed
+
+    private void jcbEditarAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEditarAlimentosMouseClicked
+
+    private void jchEditarLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarLacteosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarLacteosActionPerformed
+
+    private void jchEditarProteinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarProteinasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarProteinasActionPerformed
+
+    private void jchEditarFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarFrutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarFrutaActionPerformed
+
+    private void jchEditarGranoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarGranoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarGranoActionPerformed
+
+    private void jchEditarBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarBebidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarBebidasActionPerformed
+
+    private void jchEditarVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarVerdurasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchEditarVerdurasActionPerformed
+
+    private void jLabel26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEditar, 1);
+    }//GEN-LAST:event_jLabel26MouseExited
+
+    private void jLabel26MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarEditar, 0);
+    }//GEN-LAST:event_jLabel26MouseEntered
+
+    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
+        // TODO add your handling code here:
+        jcbEditarAlimentos.setSelectedIndex(0);
+        jcbEditarAlimentosUnidad.setSelectedIndex(0);
+        limpiarDatosEditar();
+        limpiarErroresEditar();
+    }//GEN-LAST:event_jLabel26MouseClicked
+
+    private void jLabel25MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEditar, 1);
+    }//GEN-LAST:event_jLabel25MouseExited
+
+    private void jLabel25MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarEditar, 0);
+    }//GEN-LAST:event_jLabel25MouseEntered
+
+    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
+        // TODO add your handling code here:
+        this.ac.comrpobarDatosEditados(jlblErrorUnidad, jcbEditarAlimentosUnidad, jcbEditarAlimentos, jtxtCaloriasEditar, categoriasEditadas(), jlblErrorCaloriasEditar, jlblErrorGrupoEditar, jlblExitoEditar, jcbEditarAlimentos);
+        this.limpiarDatosEditar();
+    }//GEN-LAST:event_jLabel25MouseClicked
+
+    private void jtxtNombreAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNombreAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtNombreAgregarActionPerformed
+
+    private void jcbAgregarAlimentosUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAgregarAlimentosUnidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbAgregarAlimentosUnidadActionPerformed
+
+    private void jcbAgregarAlimentosUnidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbAgregarAlimentosUnidadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbAgregarAlimentosUnidadMouseClicked
+
+    private void jchGrasasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchGrasasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchGrasasActionPerformed
+
+    private void jchLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchLacteosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchLacteosActionPerformed
+
+    private void jchProteinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchProteinasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchProteinasActionPerformed
+
+    private void jchFrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchFrutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchFrutaActionPerformed
+
+    private void jchGranoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchGranoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchGranoActionPerformed
+
+    private void jchBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchBebidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchBebidasActionPerformed
+
+    private void jchVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchVerdurasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jchVerdurasActionPerformed
+
+    private void jLabel15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarAgregar, 1);
+    }//GEN-LAST:event_jLabel15MouseExited
+
+    private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpCancelarAgregar, 0);
+    }//GEN-LAST:event_jLabel15MouseEntered
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        this.limpiarCheckBoxAgregar(0);
+        jcbAgregarAlimentosUnidad.setSelectedIndex(0);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarAgregar, 1);
+    }//GEN-LAST:event_jLabel14MouseExited
+
+    private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpAceptarAgregar, 0);
+    }//GEN-LAST:event_jLabel14MouseEntered
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        this.ac.comrpobarDatos(jlblErrorCaloriasAgregar1, jcbAgregarAlimentosUnidad, jtxtNombreAgregar, jtxtCaloriasAgregar, obtenerCategoriasAgregar(), jlblErrorNombreAgregar, jlblErrorCaloriasAgregar, jLblErrorGrupoAgregar, jlblExitoAgregar);
+        limpiarCheckBoxAgregar(1);
+        jcbAgregarAlimentosUnidad.setSelectedIndex(0);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jpswContrasenaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpswContrasenaAnteriorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpswContrasenaAnteriorActionPerformed
+
+    private void jLabel18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseExited
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpBotonCancelarContrasena, 1);
+    }//GEN-LAST:event_jLabel18MouseExited
+
+    private void jLabel18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseEntered
+        // TODO add your handling code here:
+        this.btn.cambiarColorBotones(jpBotonCancelarContrasena, 0);
+    }//GEN-LAST:event_jLabel18MouseEntered
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
         // TODO add your handling code here:
@@ -1201,162 +1595,121 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jpBotonGuardarContrasenaMouseEntered
 
-    private void jpswContrasenaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpswContrasenaAnteriorActionPerformed
+    private void jLabel23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jpswContrasenaAnteriorActionPerformed
+        this.btn.cambiarColorBotones(jpBotonGuardarContrasena, 1);
+    }//GEN-LAST:event_jLabel23MouseExited
 
-    private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
+    private void jLabel23MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseEntered
         // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpAceptarAgregar, 0);
-    }//GEN-LAST:event_jLabel14MouseEntered
-
-    private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpAceptarAgregar, 1);
-    }//GEN-LAST:event_jLabel14MouseExited
-
-    private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCancelarAgregar, 0);
-    }//GEN-LAST:event_jLabel15MouseEntered
-
-    private void jLabel15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCancelarAgregar, 1);
-    }//GEN-LAST:event_jLabel15MouseExited
-
-    private void jLabel25MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpAceptarEditar, 0);
-    }//GEN-LAST:event_jLabel25MouseEntered
-
-    private void jLabel25MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpAceptarEditar, 1);
-    }//GEN-LAST:event_jLabel25MouseExited
-
-    private void jLabel26MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCancelarEditar, 0);
-    }//GEN-LAST:event_jLabel26MouseEntered
-
-    private void jLabel26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCancelarEditar, 1);
-    }//GEN-LAST:event_jLabel26MouseExited
-
-    private void jLabel31MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpAceptarEliminar, 0);
-    }//GEN-LAST:event_jLabel31MouseEntered
-
-    private void jLabel31MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpAceptarEliminar, 1);
-    }//GEN-LAST:event_jLabel31MouseExited
-
-    private void jLabel32MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseEntered
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCancelarEliminar, 0);
-    }//GEN-LAST:event_jLabel32MouseEntered
-
-    private void jLabel32MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseExited
-        // TODO add your handling code here:
-        this.btn.cambiarColorBotones(jpCancelarEliminar, 1);
-    }//GEN-LAST:event_jLabel32MouseExited
+        this.btn.cambiarColorBotones(jpBotonGuardarContrasena, 0);
+    }//GEN-LAST:event_jLabel23MouseEntered
 
     private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
         // TODO add your handling code here:
         this.ac.cambiarContraseña(jlblNombreUsuarioMenu.getText(), jlblTextoErrorContrasenaIngresada, jlblTextoErrorContrasenaDiferente, jpswContrasenaAnterior, jpswContrasenaNueva, jpswConfirmarContrasena, jlblTextoContrasenaDiferenteSucess);
     }//GEN-LAST:event_jLabel23MouseClicked
 
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+    private void jpCambiarContrasenaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCambiarContrasenaMouseExited
         // TODO add your handling code here:
-        this.ac.comrpobarDatos(jlblErrorCaloriasAgregar1,jcbAgregarAlimentosUnidad,jtxtNombreAgregar, jtxtCaloriasAgregar, obtenerCategoriasAgregar(), jlblErrorNombreAgregar, jlblErrorCaloriasAgregar, jLblErrorGrupoAgregar, jlblExitoAgregar);
-        limpiarCheckBoxAgregar(1);
-        jcbAgregarAlimentosUnidad.setSelectedIndex(0);
-    }//GEN-LAST:event_jLabel14MouseClicked
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 0);
+    }//GEN-LAST:event_jpCambiarContrasenaMouseExited
 
-    private void jcbEditarAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosActionPerformed
+    private void jpCambiarContrasenaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCambiarContrasenaMouseEntered
         // TODO add your handling code here:
-        this.marcarDatos();
-    }//GEN-LAST:event_jcbEditarAlimentosActionPerformed
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 1);
+    }//GEN-LAST:event_jpCambiarContrasenaMouseEntered
 
-    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
+    private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
         // TODO add your handling code here:
-        jcbEditarAlimentos.setSelectedIndex(0);
-        jcbEditarAlimentosUnidad.setSelectedIndex(0);
-        limpiarDatosEditar();
-        limpiarErroresEditar();
-    }//GEN-LAST:event_jLabel26MouseClicked
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 1);
+    }//GEN-LAST:event_jLabel11MouseExited
 
-    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
+    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
         // TODO add your handling code here:
-        this.ac.comrpobarDatosEditados(jlblErrorUnidad,jcbEditarAlimentos,jcbEditarAlimentos, jtxtCaloriasEditar, categoriasEditadas(), jlblErrorCaloriasEditar, jlblErrorGrupoEditar, jlblExitoEditar, jcbEditarAlimentos);
-        this.limpiarDatosEditar();
-    }//GEN-LAST:event_jLabel25MouseClicked
+        this.btn.cambiarColorBotones(jpCambiarContrasena, 0);
+    }//GEN-LAST:event_jLabel11MouseEntered
 
-    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-        this.af.eliminarAlimento(this.jcbEliminar.getSelectedItem().toString(), jLblEliminado, this.jcbEliminar.getSelectedItem().toString());
-        this.af.cargarCombobox(jcbEliminar, errorinterno);
-    }//GEN-LAST:event_jLabel31MouseClicked
+        this.ac.cambiarPestañaMenu(jtpOpciones, 1);
+        this.jlblTextoContrasenaDiferenteSucess.setText("");
+    }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void jcbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEliminarActionPerformed
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbEliminarActionPerformed
+        CategoriaPopular rep = new CategoriaPopular(this,true);
+        rep.setVisible(true);
+    }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void jcbEditarAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosMouseClicked
+    private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbEditarAlimentosMouseClicked
+        this.btn.cambiarColorBotones(Popularidad, 0);
+    }//GEN-LAST:event_jLabel13MouseEntered
 
-    private void jtxtCaloriasAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCaloriasAgregarActionPerformed
+    private void jLabel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtCaloriasAgregarActionPerformed
+        this.btn.cambiarColorBotones(Popularidad, 1);
+    }//GEN-LAST:event_jLabel13MouseExited
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+    private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
         // TODO add your handling code here:
-        this.limpiarCheckBoxAgregar(0);
-        jcbAgregarAlimentosUnidad.setSelectedIndex(0);
-    }//GEN-LAST:event_jLabel15MouseClicked
+                MasConsumidos rep = new MasConsumidos(this, true);
+        rep.setVisible(true);
+    }//GEN-LAST:event_jLabel38MouseClicked
 
-    private void jtxtCaloriasEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCaloriasEditarActionPerformed
+    private void jLabel38MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtCaloriasEditarActionPerformed
+        this.btn.cambiarColorBotones(MasConsumidos, 0);
+    }//GEN-LAST:event_jLabel38MouseEntered
 
-    private void jLabel32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseClicked
+    private void jLabel38MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseExited
         // TODO add your handling code here:
-        limpiarEliminar();
-    }//GEN-LAST:event_jLabel32MouseClicked
+        this.btn.cambiarColorBotones(MasConsumidos, 1);
+    }//GEN-LAST:event_jLabel38MouseExited
 
-    private void jcbEditarAlimentosUnidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosUnidadMouseClicked
+    private void jLabel39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbEditarAlimentosUnidadMouseClicked
+        ReporteCaloricoAlimentos rep = new ReporteCaloricoAlimentos(this,true);
+        rep.setVisible(true);
+    }//GEN-LAST:event_jLabel39MouseClicked
 
-    private void jcbEditarAlimentosUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEditarAlimentosUnidadActionPerformed
+    private void jLabel39MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbEditarAlimentosUnidadActionPerformed
+        this.btn.cambiarColorBotones(ReporteCalorico, 0);
+    }//GEN-LAST:event_jLabel39MouseEntered
 
-    private void jchEditarGrasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchEditarGrasaActionPerformed
+    private void jLabel39MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jchEditarGrasaActionPerformed
+        this.btn.cambiarColorBotones(ReporteCalorico, 1);
+    }//GEN-LAST:event_jLabel39MouseExited
 
-    private void jchBebidas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchBebidas1ActionPerformed
+    private void jLabel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jchBebidas1ActionPerformed
+        this.ac.cambiarPestañaMenu(jtpOpciones, 6);
+    }//GEN-LAST:event_jLabel40MouseClicked
 
-    private void jcbAgregarAlimentosUnidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbAgregarAlimentosUnidadMouseClicked
+    private void jLabel40MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbAgregarAlimentosUnidadMouseClicked
+        this.btn.cambiarColorBotones(ConsumoPorUsuario, 0);
+    }//GEN-LAST:event_jLabel40MouseEntered
 
-    private void jcbAgregarAlimentosUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAgregarAlimentosUnidadActionPerformed
+    private void jLabel40MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbAgregarAlimentosUnidadActionPerformed
+        this.btn.cambiarColorBotones(ConsumoPorUsuario, 1);
+    }//GEN-LAST:event_jLabel40MouseExited
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.reporteConsumo();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void reporteBuscador() {
+        int filaSeleccionada = jtUsuarios.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String nombre = (String) jtUsuarios.getValueAt(filaSeleccionada, 1);
+            ConsumoPorUsuario rep2 = new ConsumoPorUsuario(this, true, nombre);
+            rep2.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }
+
+    }
 
     private void limpiarErroresEditar() {
         jlblExitoEditar.setText("");
@@ -1384,6 +1737,9 @@ public class Menu extends javax.swing.JFrame {
         if (jchVerduras.isSelected()) {
             categorias.add("Verdura");
         }
+        if (jchGrasas.isSelected()) {
+            categorias.add("Grasa");
+        }
         return categorias;
     }
 
@@ -1407,6 +1763,9 @@ public class Menu extends javax.swing.JFrame {
         if (jchEditarVerduras.isSelected()) {
             categorias.add("Verdura");
         }
+        if (jchEditarGrasa.isSelected()) {
+            categorias.add("Grasa");
+        }
         return categorias;
     }
 
@@ -1419,6 +1778,7 @@ public class Menu extends javax.swing.JFrame {
         jchLacteos.setSelected(false);
         jchGrano.setSelected(false);
         jchFruta.setSelected(false);
+        jchGrasas.setSelected(false);
         if (caso == 0) {
             this.jlblErrorNombreAgregar.setText("");
             this.jlblErrorCaloriasAgregar.setText("");
@@ -1431,26 +1791,11 @@ public class Menu extends javax.swing.JFrame {
         jLblEliminado.setText("");
         jcbEliminar.setSelectedIndex(0);
     }
-    
-    private void reporteConsumo(){
-        ArrayList<String[]> datos = rf.masConsumidos();
-        DefaultCategoryDataset data = new DefaultCategoryDataset();
-        for (int i = 0; i < datos.size(); i++) {
-            data.addValue(Integer.valueOf(datos.get(i)[1]), datos.get(i)[0], "Comida");
-        }
-        JFreeChart graficoBarras = ChartFactory.createBarChart3D("Mas consumidos","Alimentos", "Cantidad", data,PlotOrientation.VERTICAL,true,true,false);
-        jPanelReportes.setLayout(new BorderLayout());
-        ChartPanel panel = new ChartPanel(graficoBarras);
-        panel.setMouseWheelEnabled(true);
-        jPanelReportes.add(panel, BorderLayout.CENTER);
-        pack();
-        repaint();
-    }
 
     private void marcarDatos() {
         limpiarDatosEditar();
         if (!jcbEditarAlimentos.getSelectedItem().equals("Seleccione un alimento")) {
-            ArrayList<String> categorias = af.cargarDatosEditar(jcbEditarAlimentosUnidad,jcbEditarAlimentos.getSelectedItem().toString(), jtxtCaloriasEditar);
+            ArrayList<String> categorias = af.cargarDatosEditar(jcbEditarAlimentosUnidad, jcbEditarAlimentos.getSelectedItem().toString(), jtxtCaloriasEditar);
             for (int i = 0; i < categorias.size(); i++) {
                 if (categorias.get(i).equals("Bebida")) {
                     jchEditarBebidas.setSelected(true);
@@ -1470,6 +1815,9 @@ public class Menu extends javax.swing.JFrame {
                 if (categorias.get(i).equals("Verdura")) {
                     jchEditarVerduras.setSelected(true);
                 }
+                if (categorias.get(i).equals("Grasa")) {
+                    jchEditarGrasa.setSelected(true);
+                }
             }
         }
     }
@@ -1482,6 +1830,7 @@ public class Menu extends javax.swing.JFrame {
         jchEditarLacteos.setSelected(false);
         jchEditarProteinas.setSelected(false);
         jchEditarVerduras.setSelected(false);
+        jchEditarGrasa.setSelected(false);
     }
 
     private void llenarComboboxUnidades() {
@@ -1528,10 +1877,20 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ConsumoPorUsuario;
+    private javax.swing.JPanel MasConsumidos;
+    private javax.swing.JPanel Popularidad;
+    private javax.swing.JPanel ReporteCalorico;
+    private javax.swing.JPanel botonBuscarReporteUsuarios;
+    private javax.swing.JPanel botonReporteBuscador;
+    private javax.swing.JPanel botonReporteCancelar;
+    private javax.swing.JLabel buscarBuscador;
     private javax.swing.JLabel errorinterno;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1558,7 +1917,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1566,18 +1928,20 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLblEliminado;
     private javax.swing.JLabel jLblErrorGrupoAgregar;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelAgregar;
     private javax.swing.JPanel jPanelEditar;
     private javax.swing.JPanel jPanelEditarContrasena;
     private javax.swing.JPanel jPanelEliminar;
     private javax.swing.JPanel jPanelPerfil;
     private javax.swing.JPanel jPanelReportes;
+    private javax.swing.JPanel jPanleReporteUsuarios;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbAgregarAlimentosUnidad;
     private javax.swing.JComboBox<String> jcbEditarAlimentos;
     private javax.swing.JComboBox<String> jcbEditarAlimentosUnidad;
     private javax.swing.JComboBox<String> jcbEliminar;
     private javax.swing.JCheckBox jchBebidas;
-    private javax.swing.JCheckBox jchBebidas1;
     private javax.swing.JCheckBox jchEditarBebidas;
     private javax.swing.JCheckBox jchEditarFruta;
     private javax.swing.JCheckBox jchEditarGrano;
@@ -1587,9 +1951,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox jchEditarVerduras;
     private javax.swing.JCheckBox jchFruta;
     private javax.swing.JCheckBox jchGrano;
+    private javax.swing.JCheckBox jchGrasas;
     private javax.swing.JCheckBox jchLacteos;
     private javax.swing.JCheckBox jchProteinas;
     private javax.swing.JCheckBox jchVerduras;
+    private javax.swing.JLabel jlblErrorBuscar;
     private javax.swing.JLabel jlblErrorCaloriasAgregar;
     private javax.swing.JLabel jlblErrorCaloriasAgregar1;
     private javax.swing.JLabel jlblErrorCaloriasEditar;
@@ -1621,10 +1987,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpswConfirmarContrasena;
     private javax.swing.JPasswordField jpswContrasenaAnterior;
     private javax.swing.JPasswordField jpswContrasenaNueva;
+    private javax.swing.JTable jtUsuarios;
     private javax.swing.JTabbedPane jtpOpciones;
-    private javax.swing.JTextField jtxtCaloriasAgregar;
-    private javax.swing.JTextField jtxtCaloriasEditar;
-    private javax.swing.JTextField jtxtNombreAgregar;
+    private javax.swing.JTextField jtxtBuscador;
+    private com.Componentes.campoCalorias jtxtCaloriasAgregar;
+    private com.Componentes.campoCalorias jtxtCaloriasEditar;
+    private com.Componentes.nombreAlimentos jtxtNombreAgregar;
+    private javax.swing.JLabel reporteBuscador;
+    private javax.swing.JLabel reporteBuscador1;
     // End of variables declaration//GEN-END:variables
 
 }

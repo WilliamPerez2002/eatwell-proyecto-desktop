@@ -91,7 +91,7 @@ public class Acciones {
                 errorUnidad.setText("Seleccione");
             }
             
-            if (!fr.nombreDuplicado(nombre.getText(), error, exito) && caloriasValidas && !categorias.isEmpty()) {
+            if (!fr.nombreDuplicado(nombre.getText(), error, exito) && caloriasValidas && !categorias.isEmpty()&&unidad.getSelectedIndex()!=0) {
                 fr.guardar(nombre.getText(), caloriasTransformadas, categorias, exito,unidad.getSelectedItem().toString());
                 errorCalorias.setText("");
                 nombre.setText("");
@@ -124,7 +124,11 @@ public class Acciones {
                 errorUnidad.setText("Seleccione");
             }
             
-            if (caloriasValidas &&!categorias.isEmpty() && unidad.getSelectedIndex()!=0) {
+            if(nombre.getSelectedIndex()==0){
+                errorCalorias.setText("Seleccione un Alimento");
+            }
+            
+            if (nombre.getSelectedIndex()!=0&&caloriasValidas &&!categorias.isEmpty() && unidad.getSelectedIndex()!=0) {
                 fr.editar(nombre.getSelectedItem().toString(), caloriasTransformadas, categorias, exito,unidad.getSelectedItem().toString());
                 exito.setText("Almiento editado");
                 errorGrupo.setText("");

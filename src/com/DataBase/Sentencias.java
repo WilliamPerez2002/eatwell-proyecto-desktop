@@ -2,6 +2,7 @@ package com.DataBase;
 
 import javax.swing.JTextField;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 
 /**
@@ -155,5 +156,28 @@ public class Sentencias {
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
         }
+    }
+
+    public ArrayList<String[]> recuperarUsuarios(String nombre) {
+        ArrayList<String[]> users = new ArrayList<>();
+        try {
+            Connection cn = this.con.getConexion();
+            String sql = "SELECT * FROM USUARIOS WHERE ID_USU LIKE '%" + nombre + "%';";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            int pos = 1;
+            while (rs.next()) {
+                String[] datos = new String[4];
+                datos[0] = String.valueOf(pos);
+                datos[1] = rs.getString("ID_USU");
+                datos[2] = rs.getString("NOM_USU");
+                datos[3] = rs.getString("APE_USU");
+                users.add(datos);
+                pos++;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
+        return users;
     }
 }
